@@ -56,6 +56,7 @@ Route::prefix('reception')->group(function () {
 Route::get('test',function (){
     return view('casestudy\test');
 });
+Route::resource('events', 'EventController');
 ############ End Reception ############################
 
 ############ Case Study ############################

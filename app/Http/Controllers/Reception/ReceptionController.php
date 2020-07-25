@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Reception;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\ServiceBooking;
 use App\MyModels\Logofpenifit;
 use App\MyModels\Penifit;
+use App\MyModels\Serviceprovider;
 use App\Providers\RouteServiceProvider;
 use Faker\Provider\DateTime;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 Use \Carbon\Carbon;
+use Rinvex\Bookings\Models\BookableBooking;
 
 class ReceptionController extends Controller
 {
@@ -122,12 +127,49 @@ class ReceptionController extends Controller
             DB::table('penifits')
                 ->where('id','=' , $currentid[0]->id)
                 ->update(['wait' => "1"]);
+    ////////////////////////////////////////////////////////////////////Booking
+            $serviceProvider=Serviceprovider::find(2);
+            $penifit=new Penifit();
+            $penifit=Penifit::find($currentid);
+
+            $serviceBooking =new  \App\Models\Availability();
+            $serviceBooking->make(['range' => 'dates', 'from' => '08:00 am', 'to' => '12:30 pm',
+                'is_bookable' => true  ])
+                ->bookable()->associate($serviceProvider)
+                ->save();
+
+//
+            $Booking= new Booking();
+            $Booking->make(['starts_at' => \Carbon\Carbon::now(),
+                'ends_at' => \Carbon\Carbon::tomorrow(),
+                'price' => 1,
+                'quantity' => 1,
+                'total_paid' => 1,
+                'currency' => 'EUR',
+                'notes'=>'no notes',
+                'customer_id'=>$penifit[0]->id,
+                'customer_type'=>'type'
+
+               ])
+
+                ->bookable()->associate($serviceProvider)
+//                ->customer()->associate( $penifit)
+
+     ->save();
+
+
+
+
+
+
 
 
 //            $currentpenifit=Penifit::where('card_id','=',$card_id)->get();
             return response() -> json([
                 'status'=> true,
                 'msg'=>'user already exist added to log list',
+
+
 
 
                 ////////////////////////////////////////////////////////////// change wait to 1 and add to log

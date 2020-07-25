@@ -2,27 +2,26 @@
 
 namespace App\MyModels;
 
+use App\Models\Booking;
 use Illuminate\Database\Eloquent\Model;
+use Rinvex\Bookings\Traits\HasBookings;
 
 class Penifit extends Model
 {
+
+    use HasBookings;
     //
-    protected $fillable = [
-        'first_name', 'father_name', 'last_name','city_name','birth_date','card_id','added_by','wait'
-    ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-
-    ];
     public $timestamps = true;
 
     public function logofpenifits(){
         return $this -> hasMany('App\MyModels\Logofpenifit','penifit_id','id');
+    }
+
+    public static function getBookingModel(): string
+    {
+//        return \Rinvex\Bookings\Models\ServiceBooking::class;
+        return Booking::class;
     }
 
 }
