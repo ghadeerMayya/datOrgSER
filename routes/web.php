@@ -1,6 +1,7 @@
 <?php
 
 use App\Penifit;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
@@ -34,20 +35,20 @@ Route::get('/addPenifits','PenifitController@addPenifits');
 
 
 ############ Admin routes  ######################
-Route::prefix('admin')->group(function () {
-    Route::get('adminpanel','Admin\AdminController@index')->name('adminpanel');
+Route::prefix('/admin')->group(function () {
+    Route::get('/adminpanel','Admin\AdminController@index')->name('adminpanel');
 });
 
 ############ End Admin routes  ######################
 
 ############ Reception ############################
 
-Route::prefix('reception')->group(function () {
-    Route::get('receptionpanel','Reception\ReceptionController@index')->name('receptionpanel');
-    Route::post('addtowait','Reception\ReceptionController@addnewpenifitandtowait')->name('addtowaitinglist');
-    Route::get('getwaitingusers','Reception\ReceptionController@getwaitingusers')->name('getwaitingusers');
-    Route::get('getpenifitlog','Reception\ReceptionController@getPenifitLog')->name('getpenifitlog');
-    Route::post('searchid','Reception\ReceptionController@searchCardID')->name('searchid');
+Route::prefix('/reception')->group(function () {
+    Route::get('/receptionpanel','Reception\ReceptionController@index')->name('receptionpanel');
+    Route::post('/addtowait','Reception\ReceptionController@addnewpenifitandtowait')->name('addtowaitinglist');
+    Route::get('/getwaitingusers','Reception\ReceptionController@getwaitingusers')->name('getwaitingusers');
+    Route::get('/getpenifitlog','Reception\ReceptionController@getPenifitLog')->name('getpenifitlog');
+    Route::post('/searchid','Reception\ReceptionController@searchCardID')->name('searchid');
 
     ###### test route ######
 
@@ -56,16 +57,31 @@ Route::prefix('reception')->group(function () {
 Route::get('test',function (){
     return view('casestudy\test');
 });
-Route::resource('events', 'EventController');
+Route::resource('/events', 'EventController');
 ############ End Reception ############################
 
 ############ Case Study ############################
 
-Route::prefix('casestudy')->group(function () {
-    Route::get('casestudypanel','CaseStudy\CaseStudyController@index')->name('casestudypanel');
+Route::prefix('/casestudy')->group(function () {
+    Route::get('/casestudypanel','CaseStudy\CaseStudyController@index')->name('casestudypanel');
+    Route::post('/csrecieveform','CaseStudy\CaseStudyController@csrecieve')->name('csrecieve');
+    Route::get('/csform','CaseStudy\CaseStudyController@csform')->name('csform');
+
 });
 
 ############ End Case Study ############################
 
+############## Booking ###############################
+Route::get('/booking','Booking\Booking@index')->name('booking');
+
+
+################End Booking #########################
+
 Route::post('/deletePenifit','PenifitController@deletePenifit');
 //Route::post('/addPenifits','PenifitController@addPenifits');
+
+################## // clear route cache
+Route::get('/clear-route-cache', function() {
+    Artisan::call('config:clear');
+    return "Route cache file removed";
+})->name('routecasheclear');

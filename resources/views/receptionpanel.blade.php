@@ -57,29 +57,13 @@
                                 </tr>
                                 <tr>
                                     <td>الجنس</td>
-                                    <td><select class="selectpicker"  name="sex_select" >    // multiple data-live-search="true">
+                                    <td><select class="selectpicker"  name="sex_select">    // multiple data-live-search="true">
                                             <option value="m">ذكر</option>
                                             <option value="f">أنثى</option>
                                             <option value="o">غير ذلك</option>
                                         </select></td>
                                 </tr>
                                 <tr>
-                                    <td>الحالة الاجتماعية</td>
-                                    <td><select class="selectpicker"  name="Social_status" style="border-color: #00aeef; width: 15rem">
-                                            <option value="m">أعزب</option>
-                                            <option value="f">متزوج</option>
-                                            <option value="o">مطلق</option>
-                                        </select></td>
-                                </tr>
-                                <tr>
-                                <tr>
-                                    <td>تحويل الى</td>
-                                    <td><select class="selectpicker"  name="Convert_to" style="border-color: #00aeef; width: 15rem">
-                                            <option value="m">doctor1</option>
-                                            <option value="f">doctor2</option>
-                                            <option value="o">doctor3</option>
-                                        </select></td>
-                                </tr>
                                     <td>--------------------------</td>
                                 </tr>
 
@@ -382,28 +366,19 @@
                             //     hour: '2-digit',
                             //     minute: '2-digit',
                             // })
-var gender='غير ذلك';
+var sex='غير ذلك';
 if (val.sex=='m'){
-    gender='ذكر';
+    sex='ذكر';
 }
 else if(val.sex=='f'){
-     gender='أنثى';
+     sex='أنثى';
 }
 else {
-    gender='غير ذلك';
+    sex='غير ذلك';
 }
 
-                            var htm = '<tr>' +
-                                '<td>' + val.id + '</td>' +
-                                '<td>' + val.first_name + '</td>' +
-                                '<td>' + val.last_name + '</td>' +
-                                '<td>' + gender + '</td>' +
-                                '<td>' + val.birth_date + '</td>' +
-                                '<td>' + formattedDate + '</td>' +
-
-                                '</tr>';
-
-$('#waitingTbody').append(htm);
+                            var htm = '<tr><td>' + val.id + '</td><td>' + val.first_name + '</td><td>' + val.last_name + '</td><td>' + sex + '</td><td>' + val.birth_date + '</td><td>' + formattedDate + '</td></tr>';
+                            $('#waitingTbody').append(htm);
                         })
 
                         // $('#waitingTbody').html(response);
