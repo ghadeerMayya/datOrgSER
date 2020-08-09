@@ -49,54 +49,7 @@ html {
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: transparent;
 }
-#regForm {
-    background-color: #ffffff;
-    margin: 100px auto;
-    padding: 40px;
-    width: 70%;
-    min-width: 300px;
-}
 
-/* Style the input fields */
-input {
-    padding: 10px;
-    width: 100%;
-    font-size: 17px;
-    font-family: Raleway;
-    border: 1px solid #aaaaaa;
-}
-
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-    background-color: #ffdddd;
-}
-
-/* Hide all steps by default: */
-.tab {
-    display: none;
-}
-
-/* Make circles that indicate the steps of the form: */
-.step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-    opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-    background-color: #4CAF50;
-}
 @-ms-viewport {
   width: device-width;
 }
@@ -1712,37 +1665,6 @@ pre code {
     margin-left: 91.666667%;
   }
 }
-/* Start by setting display:none to make this hidden.
-   Then we position it in relation to the viewport window
-   with position:fixed. Width, height, top and left speak
-   for themselves. Background we set to 80% white with
-   our animation centered, and no-repeating */
-
-
-.modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 )
-
-}
-
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-body.loading .modal {
-    overflow: hidden;
-}
-
-/* Anytime the body has the loading class, our
-   modal element will be visible */
-body.loading .modal {
-    display: block;
-}
-
 
 .table {
   width: 100%;

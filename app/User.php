@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\MyModels\Bookuser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,6 +11,11 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+
+
+    public function bookings_users(){
+        return $this -> hasMany(Bookuser::class,'doctor_id','id');
+    }
 
 
 

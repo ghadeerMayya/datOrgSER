@@ -49,6 +49,10 @@ Route::prefix('/reception')->group(function () {
     Route::get('/getwaitingusers','Reception\ReceptionController@getwaitingusers')->name('getwaitingusers');
     Route::get('/getpenifitlog','Reception\ReceptionController@getPenifitLog')->name('getpenifitlog');
     Route::post('/searchid','Reception\ReceptionController@searchCardID')->name('searchid');
+    Route::post('/savepenifit','Reception\ReceptionController@savePenifit')->name('savepenifit');
+    Route::post('/booking','Reception\ReceptionController@booking_user')->name('booking');
+    Route::get('/booking','Reception\ReceptionController@getDoctorsList')->name('getdoctorslist');
+
 
     ###### test route ######
 
@@ -72,7 +76,7 @@ Route::prefix('/casestudy')->group(function () {
 ############ End Case Study ############################
 
 ############## Booking ###############################
-Route::get('/booking','Booking\Booking@index')->name('booking');
+Route::get('/booking','Booking\Booking@index')->name('booking1');
 
 
 ################End Booking #########################
