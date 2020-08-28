@@ -13,9 +13,15 @@ class User extends Authenticatable
     use Notifiable;
 
 
+    ////////////////////////////////////////// dates booked for user
     public function bookings_users(){
         return $this -> hasMany(Bookuser::class,'doctor_id','id');
     }
+    ///////////////////////////////////////// dates this user booked it
+    public function user_booked(){
+        return $this -> hasMany(Bookuser::class,'bookable_id','id');
+    }
+    ///////////////////
 
 
 
@@ -26,7 +32,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name'
     ];
 
     /**
@@ -35,7 +41,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','email', 'password','priv','created_at','updated_at','email_verified_at'
     ];
 
     /**

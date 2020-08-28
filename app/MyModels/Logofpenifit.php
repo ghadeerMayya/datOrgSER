@@ -23,8 +23,8 @@ class Logofpenifit extends Model
     public $timestamps = true;
 
 
-    public function penifit(){
-        return $this ->belongsTo('App\MyModels\Penifit','penifit_id','id');
-    }
+//    public function penifit(){
+//        return $this ->belongsTo('App\MyModels\Penifit','penifit_id','id');
+//    }
     //
 }

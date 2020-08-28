@@ -13,9 +13,21 @@ class Bookuser extends Model
 {
     protected $table = 'bookusers';
 
+    ////////////////////////////////////////// dates booked for user
+    public function doctor(){
+        return $this-> belongsTo(User::class,'doctor_id','id');
+    }
+    ///////////////////////////////////////// dates this user booked it
+    public function userBooked(){
+        return $this-> belongsTo(User::class,'bookable_id','id');
+    }
+    ///////////////////////////////////////booked dates for penifit
+    public function penifitBooked(){
+        return $this-> belongsTo(Penifit::class,'customer_id','id');
+    }
 
     protected $fillable = [
-        'bookable_id','customer_id','booking_date','starts_at','ends_at','doctor_id'
+        'booking_date','starts_at','ends_at'
     ];
 
     /**
@@ -24,12 +36,10 @@ class Bookuser extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'updated_at'
+        'created_at', 'updated_at','customer_id','doctor_id','bookable_id'
 
     ];
     public $timestamps = true;
 
-    public function doctors(){
-        return $this-> belongsTo(User::class,'doctor_id','id');
-    }
+
 }

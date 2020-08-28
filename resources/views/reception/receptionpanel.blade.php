@@ -211,6 +211,7 @@
         </div>
 
       </div>
+
     <div class="modal" id="loading" >
         <p><img src="{{url('/images/loading.gif')}}" alt="Image"/> Please Wait</p>
     </div>
@@ -386,21 +387,21 @@
                     success: function(response)
                     {
                         $.map(response.data, function(val, i) {
-                            var timstamp= new Date(val.created_at);
-                            timstamp.toLocaleString(undefined, {
-                                day: 'numeric',
-                                month: 'numeric',
-                                year: 'numeric',
-                                hour: '2-digit',
-                                minute: '2-digit',
-                            })
-                            var date = timstamp.getDate();
-                            var month = timstamp.getMonth();
-                            var year = timstamp.getFullYear();
-                            var hour=timstamp.getHours();
-                            var minutes=timstamp.getMinutes();
-                            var formattedDate  = date+ "/" + (month+1)  + "/" + year+ "  -- at :  " + hour+ ":" + minutes;
-                            // var userTimezoneOffset = timstamp.getTimezoneOffset() * 60000;
+                            // var timstamp= new Date(val.created_at);
+                            // timstamp.toLocaleString(undefined, {
+                            //     day: 'numeric',
+                            //     month: 'numeric',
+                            //     year: 'numeric',
+                            //     hour: '2-digit',
+                            //     minute: '2-digit',
+                            // })
+                            // var date = timstamp.getDate();
+                            // var month = timstamp.getMonth();
+                            // var year = timstamp.getFullYear();
+                            // var hour=timstamp.getHours();
+                            // var minutes=timstamp.getMinutes();
+                            // var formattedDate  = date+ "/" + (month+1)  + "/" + year+ "  -- at :  " + hour+ ":" + minutes;
+                            // // var userTimezoneOffset = timstamp.getTimezoneOffset() * 60000;
                             // var modifiedTstamp=new Date(timstamp.getTime() - userTimezoneOffset);
                             // timstamp.toLocaleString(undefined, {
                             //     day: 'numeric',
@@ -410,22 +411,27 @@
                             //     minute: '2-digit',
                             // })
                             var gender='غير ذلك';
-                            if (val.gender=='m'){
+                            if (val.penifit_booked.gender=='m'){
                                 gender='ذكر';
                             }
-                            else if(val.gender=='f'){
+                            else if(val.penifit_booked.gender=='f'){
                                 gender='أنثى';
                             }
                             else {
                                 gender='غير ذلك';
                             }
                             var htm = '<tr>' +
-                                '<td>' + val.id + '</td>' +
-                                '<td>' + val.first_name + '</td>' +
-                                '<td>' + val.last_name + '</td>' +
+                                '<td>' + val.penifit_booked.id + '</td>' +
+                                '<td>' + val.penifit_booked.first_name + '</td>' +
+                                '<td>' + val.penifit_booked.last_name + '</td>' +
                                 '<td>' + gender + '</td>' +
-                                '<td>' + val.birth_date + '</td>' +
-                                '<td>' + formattedDate + '</td>' +
+                                '<td>' + val.penifit_booked.birth_date + '</td>' +
+                                '<td>' + val.booking_date + '</td>' +
+
+                                '<td>' + val.starts_at + '</td>' +
+                                '<td>' + val.ends_at + '</td>' +
+                                '<td>' + val.doctor.name + '</td>' +
+                                '<td>' + val.user_booked.name + '</td>' +
                                 '</tr>';
                             $('#waitingTbody').append(htm);
                         })

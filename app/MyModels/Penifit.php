@@ -12,8 +12,14 @@ class Penifit extends Model
 
     public $timestamps = true;
 
-    public function logofpenifits(){
-        return $this -> hasMany('App\MyModels\Logofpenifit','penifit_id','id');
+//    public function logofpenifits(){
+//        return $this -> hasMany('App\MyModels\Logofpenifit','penifit_id','id');
+//    }
+
+
+    ///////////////////////////////////////booked dates for penifit
+    public function booked_dates(){
+        return $this -> hasMany(Bookuser::class,'customer_id','id');
     }
 
 

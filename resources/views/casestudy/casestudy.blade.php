@@ -2,6 +2,7 @@
 
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="add-tab" data-toggle="tab" href="#add" role="tab" aria-controls="add" aria-selected="true">إضافة مستفيد</a>
@@ -114,7 +115,11 @@
                     <th scope="col">الاسم الأخير</th>
                     <th scope="col">الجنس</th>
                     <th scope="col">تاريخ الميلاد</th>
-                    <th scope="col">تاريخ التحويل</th>
+                    <th scope="col">تاريخ الحجز</th>
+                    <th scope="col">من الساعة</th>
+                    <th scope="col">إلى الساعة</th>
+                    <th scope="col">محول إلى</th>
+                    <th scope="col">محول من</th>
                     <th scope="col">الإجراء</th>
                 </tr>
                 </thead>
@@ -149,8 +154,6 @@
 @endsection
 
 @section('scripts')
-
-
 
     <script>
         $.ajaxSetup({
@@ -215,7 +218,6 @@
         });
 
         /////////////////////////////////////////////////////////////////////// Get log should move to c.s
-
 
         /////////////////////////////////////////////////////////////////////// Remove fields
         $(document).on('click','#removeprev',function (e) {
@@ -388,51 +390,28 @@
                     success: function(response)
                     {
                         $.map(response.data, function(val, i) {
-                            var timstamp= new Date(val.created_at);
-                            timstamp.toLocaleString(undefined, {
-                                day: 'numeric',
-                                month: 'numeric',
-                                year: 'numeric',
-                                hour: '2-digit',
-                                minute: '2-digit',
-                            })
-
-                            var date = timstamp.getDate();
-                            var month = timstamp.getMonth();
-                            var year = timstamp.getFullYear();
-                            var hour=timstamp.getHours();
-                            var minutes=timstamp.getMinutes();
-                            var formattedDate  = date+ "/" + (month+1)  + "/" + year+ "  -- at :  " + hour+ ":" + minutes;
-
-
-                            // var userTimezoneOffset = timstamp.getTimezoneOffset() * 60000;
-                            // var modifiedTstamp=new Date(timstamp.getTime() - userTimezoneOffset);
-
-                            // timstamp.toLocaleString(undefined, {
-                            //     day: 'numeric',
-                            //     month: 'numeric',
-                            //     year: 'numeric',
-                            //     hour: '2-digit',
-                            //     minute: '2-digit',
-                            // })
                             var gender='غير ذلك';
-                            if (val.sex=='m'){
+                            if (val.penifit_booked.gender=='m'){
                                 gender='ذكر';
                             }
-                            else if(val.sex=='f'){
+                            else if(val.penifit_booked.gender=='f'){
                                 gender='أنثى';
                             }
                             else {
                                 gender='غير ذلك';
                             }
-
                             var htm = '<tr>' +
-                                '<td>' + val.id + '</td>' +
-                                '<td>' + val.first_name + '</td>' +
-                                '<td>' + val.last_name + '</td>' +
+                                '<td>' + val.penifit_booked.id + '</td>' +
+                                '<td>' + val.penifit_booked.first_name + '</td>' +
+                                '<td>' + val.penifit_booked.last_name + '</td>' +
                                 '<td>' + gender + '</td>' +
-                                '<td>' + val.birth_date + '</td>' +
-                                '<td>' + formattedDate + '</td>' +
+                                '<td>' + val.penifit_booked.birth_date + '</td>' +
+                                '<td>' + val.booking_date + '</td>' +
+
+                                '<td>' + val.starts_at + '</td>' +
+                                '<td>' + val.ends_at + '</td>' +
+                                '<td>' + val.doctor.name + '</td>' +
+                                '<td>' + val.user_booked.name + '</td>' +
                                 '<td>' + '<button class="recieve_btn" ' +
                                 'penifit_id='+val.id+'>'+' Recieve </button>' + '</td>' +
                                 '</tr>';

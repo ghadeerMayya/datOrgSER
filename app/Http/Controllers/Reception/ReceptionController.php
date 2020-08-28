@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 Use \Carbon\Carbon;
+use function GuzzleHttp\Promise\all;
 
 
 class ReceptionController extends Controller
@@ -32,6 +33,18 @@ class ReceptionController extends Controller
 
 
         $card_id = $request->input('card_id');
+
+        ////////////////////////////////////////////////////////////////////////////General task log
+        $currentid=Penifit::where('card_id','=',$card_id)->get('id');
+        $tasklog=new Tasklog();
+        $currentDate=Carbon::now();
+        $tasklog->created_at=$currentDate;
+        $tasklog->user_did_task=Auth::user()->id;
+        $tasklog->penifit_id=$card_id;
+        $tasklog->task="searching";
+        $tasklog->save();
+        ////////////////////////////////////////////////////////////////////end GTL
+
 
         $currentpenifit=Penifit::where('card_id','=',$card_id)->get('id');
 
@@ -326,7 +339,9 @@ class ReceptionController extends Controller
     public function getwaitingusers(){
 
 
-        $arrs['data']=Penifit::where('wait','=','1')->get();
+        $arrs['data']=Bookuser::with('doctor','userBooked','penifitBooked')
+            ->where('status','waiting')
+        ->get();
 
         return $arrs;
 
@@ -343,5 +358,31 @@ class ReceptionController extends Controller
 
     }
 
+    public function test(){
+
+        ///
+        $bookings=User::find('1');
+        //////////////////////////////////////////// return just booking
+//        return $bookings -> bookings_users;
+
+        ///////////////////////////////////////////return doctor with its booking
+//        return $bookings = User::with('bookings_users')->find('1');
+
+        //////////////////////////////////////////// find doctor of booking
+        ///
+//        $bookuser=Bookuser::find('27');
+//        return $bookuser -> doctor -> email;
+//
+        /////
+        $bookuser=Bookuser::find('27');
+        return $bookuser ;
+
+//        $bookuser=Bookuser::find('27');
+//        return $bookuser -> userBooked -> id;
+
+
+
+
+    }
 
 }

@@ -11,8 +11,27 @@ Route::get('/', 'HomeController@index');
 //    return 'welcome';
 //});
 
-Route::get('/test/{id}', function ($id) {
+Route::get('/testttt/{id}', function ($id) {
     return 'welcome '. $id;
+});
+
+Route::get('/ghtest', function () {
+    return response() -> json([
+        'doctor'=>
+            ['id'=> '1',
+        'name'=>'basheer']
+        ,
+        'penifit'=> ['id'=> '1',
+            'name'=>'ahmad']
+        ,
+        'user'=> ['id'=> '1',
+            'name'=>'reception']
+
+
+
+
+    ]);
+
 });
 
 Route::get('/post/{id}','Posts@index');
@@ -58,9 +77,9 @@ Route::prefix('/reception')->group(function () {
 
     ###### test route ######
 });
-Route::get('test',function (){
-    return view('casestudy\test');
-});
+Route::get('/test','Reception\ReceptionController@test')->name('test');
+
+
 Route::resource('/events', 'EventController');
 ############ End Reception ############################
 
