@@ -16,26 +16,24 @@
     </ul>
 
     <div class="tab-content" id="myTabContent">
+
+        {{--Add penifit Form--}}
         <div class="tab-pane fade show active" id="add" role="tabpanel" aria-labelledby="add-tab">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">Add penifit</div>
-
-                            {{--Add penifit Form--}}
+                            <div class="card-header">اضافة مستفيد</div>
                             <form  method = "post" id="addPenifitForm" enctype="multipart/form-data">
                                 <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-                                <table>
+                                <table class="table_body">
                                     <tr>
                                         <td>الرقم الوطني</td>
                                         <td><input type="text" name='card_id'/></td>
-                                        <td colspan = '2'>
-                                            <input type="submit" id="searchid" class="btn btn-primary" value="بحث"/>
-                                        </td>
+
                                     </tr>
                                     <tr>
-                                        <td>--------------------------</td>
+                                        {{--                                        <td>--------------------------</td>--}}
                                     </tr>
                                     <tr>
                                         <td>الاسم الأول</td>
@@ -58,52 +56,99 @@
                                     </tr>
                                     <tr>
                                         <td>الجنس</td>
-                                        <td><select class="selectpicker"  name="sex_select">    // multiple data-live-search="true">
+                                        <td><select class="selectpicker"  name="gender_select" >    // multiple data-live-search="true">
                                                 <option value="m">ذكر</option>
                                                 <option value="f">أنثى</option>
                                                 <option value="o">غير ذلك</option>
                                             </select></td>
                                     </tr>
                                     <tr>
+                                        <td>الحالة الاجتماعية</td>
+                                        <td><select class="selectpicker"  name="Social_status" style="border-color: #00aeef; width: 15rem">
+                                                <option value="single">أعزب</option>
+                                                <option value="married">متزوج</option>
+                                                <option value="divorced">مطلق</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+
                                         <td>--------------------------</td>
                                     </tr>
 
+                                </table>
 
+                                <table>
                                     <tr>
                                         <td colspan = '1'>
-                                            <input type="submit" id="addtowait" class="btn btn-primary" value="إضافة إلى قائمة الانتظار"/>
+                                            <input type="submit" id="savedata" class="btn btn-primary" value="حفظ البيانات"/>
                                         </td>
 
                                         <td colspan = '3'>
                                             <input type="submit" id="removeprev" class="btn btn-primary" value="إضافة مستفيد جديد"/>
                                         </td>
+                                        <td colspan = '2'>
+                                            <input type="submit" id="searchid" class="btn btn-primary" value="بحث"/>
+                                        </td>
+                                        <td colspan = '4'>
+                                            <input type="submit"  id="Ap_Booking_button" class="btn btn-primary" value="حجز موعد"/>
+
+                                        </td>
+
                                     </tr>
+
 
                                 </table>
 
+                                <div  method = "post" id="Ap_Booking" enctype="multipart/form-data" style="display: none">
+                                    <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+                                    {{--                                <input type = "hidden" name = "penifit_id" value = "<?php echo $_SERVER['current_id']; ?>">--}}
+                                    <div class="card">
+                                        <div class="card-header">حجز موعد</div>
+                                        <table class="table_body">
+
+                                            <tr>
+                                                <td>تاريخ الحجز</td>
+                                                <td><input type="date" name='Ap_Booking_date'/></td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>من الساعة </td>
+                                                <td><input type="time" name='starts_at'/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>الى الساعة </td>
+                                                <td><input type="time" name='ends_at'/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>تحويل إلى </td>
+                                                <td><select class="selectpicker" id="trans_select"  name="doctor_select" style="border-color: #00aeef; width: 15rem">
+                                                        <option value="AP_A">doctor1</option>
+                                                        <option value="AP_B">doctor2</option>
+                                                        <option value="AP_C">doctor3</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td >
+                                                    <input type="submit"  id="Booking_btn" class="btn btn-primary" value="تثبيت موعد"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+
                             </form>
-                            <div class="alert alert-success" id="success_msg" style="display: none;">
-                                تم الحفظ بنجاح
+
+                            <div class="alert alert-success" id="alert_msg"  style="display: none;">
 
                             </div>
-                            <div class="alert alert-failed" id="error_msg" style="display: none;">
-                                الرجاء إعادة المحاولة
-                            </div>
-                            <div class="alert alert-failed" id="exist_msg" style="display: none;">
-                                الرقم الوطني موجود فعلا يرحى الضفط على زر البحث
-                            </div>
-                            <div class="alert alert-failed" id="nopenifit_msg" style="display: none;">
-                                الرقم الوطني غير موجود سابقا
-                            </div>
-                            <div class="alert alert-failed" id="existadded_msg" style="display: none;">
-                                موجود سابقا وتمت إضافته إلى قائمة الانتظار
-                            </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
         {{-- Waiting form       --}}
         <div class="tab-pane fade" id="waiting" role="tabpanel" aria-labelledby="waiting-tab">
@@ -123,6 +168,7 @@
                     <th scope="col">الإجراء</th>
                 </tr>
                 </thead>
+
                 <tbody id="waitingTbody">
 
                 {{--                                foreach loop to get data from penifits table--}}
@@ -156,6 +202,8 @@
 @section('scripts')
 
     <script>
+
+        ///////////////////////////////////////////////init ajax
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -167,61 +215,51 @@
         }).ajaxStop(function(){
             $('#loading').hide();
         });
-        /////////////////////////////////////////////////////////////////////// add penifit and add to wait if exist
-        $(document).on('click','#addtowait',function (e) {
+        ///////////////////////////////////////////////////////////save data
+        $(document).on('click','#savedata',function (e) {
             e.preventDefault();
-
             var addPenifitFormData=new FormData($('#addPenifitForm')[0]);
             //  var sex_select = $('#sex_select').find(":selected").text();
-
             $.ajax({
                     type:'post',
                     enctype:'multipart/form-data',
-                    url:"{{route('addtowaitinglist')}}",
+                    url:"{{route('savepenifit')}}",
                     data:addPenifitFormData,
                     processData:false,
                     contentType:false,
                     cache:false,
                     success: function (data) {
                         if(data.msg === 'saved and added to log'){
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
 
-                            $('#success_msg').show();
-                            $('#exist_msg').hide();
                         }
                         else if(data.msg ==='user already exist'){
-
-                            $('#exist_msg').show();
-                            $('#success_msg').hide();
-
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
                         }
                         else if(data.msg ==='user already exist added to log list'){
-
-                            $('#existadded_msg').show();
-                            $('#success_msg').hide();
-
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
                         }
-
                         else{
-                            $('#error_msg').show();
-                            $('#exist_msg').hide();
-                            $('#success_msg').hide();
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
                         }
-
                     },error: function (reject) {
                         alert('Error');
-                        $('#error_msg').show();
-                        $('#exist_msg').hide();
-                        $('#success_msg').hide();
+                        $('#alert_msg').show();
+                        $('.alert-success').html(data.msg);
                     }
                 }
             );
         });
-
-        /////////////////////////////////////////////////////////////////////// Get log should move to c.s
-
         /////////////////////////////////////////////////////////////////////// Remove fields
         $(document).on('click','#removeprev',function (e) {
             e.preventDefault();
+
+            var x = document.getElementById("Ap_Booking");
+            x.style.display = "none";
             // Add remove fields
             $('[name="card_id"]').val('');
             $('[name="first_name"]').val('');
@@ -229,21 +267,14 @@
             $('[name="last_name"]').val('');
             $('[name="city_name"]').val('');
             $('[name="birth_date"]').val('');
-            $('#error_msg').hide();
-            $('#exist_msg').hide();
-            $('#success_msg').hide();
-            $('#nopenifit_msg').hide();
+            $('#alert_msg').hide();
 
         });
-
         ////////////////////////////////////////////////////////////////////// search id
         $(document).on('click','#searchid',function (e) {
             e.preventDefault();
             // Add search and fill fields
-
             var addPenifitFormData=new FormData($('#addPenifitForm')[0]);
-
-
             $.ajax({
                     type:'post',
                     enctype:'multipart/form-data',
@@ -254,76 +285,101 @@
                     cache:false,
                     success: function (data) {
                         if(data.msg === 'no penifit found'){
-
-                            $('#nopenifit_msg').show();
-                            $('#exist_msg').hide();
-                            $('#success_msg').hide();
-
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
+                            /////////////////////////////////// empty fields
                             $('[name="first_name"]').val('');
                             $('[name="father_name"]').val('');
                             $('[name="last_name"]').val('');
                             $('[name="city_name"]').val('');
                             $('[name="birth_date"]').val('');
-
                         }
                         else if(data.msg ==='user already exist'){
-
-                            $('#exist_msg').hide();
-                            $('#success_msg').hide();
-                            $('#nopenifit_msg').hide();
-
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
                             ///////////////////////////////////////user found fill in grabs
                             $('[name="first_name"]').val(data.penifit[0].first_name);
                             $('[name="father_name"]').val(data.penifit[0].father_name);
                             $('[name="last_name"]').val(data.penifit[0].last_name);
                             $('[name="city_name"]').val(data.penifit[0].city_name);
                             $('[name="birth_date"]').val(data.penifit[0].birth_date);
-                            $('[name="sex_select"]').val(data.penifit[0].sex);
-
-
-
-
-
+                            $('[name="gender_select"]').val(data.penifit[0].gender);
+                            $('[name="Social_status"]').val(data.penifit[0].social_status);
                         }
                         else{
-                            $('#error_msg').show();
-                            $('#exist_msg').hide();
-                            $('#success_msg').hide();
-                            $('#nopenifit_msg').hide();
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
                         }
-
                     },error: function (reject) {
-                        alert('Error');
-                        $('#error_msg').show();
-                        $('#exist_msg').hide();
-                        $('#success_msg').hide();
-                        $('#nopenifit_msg').hide();
+                        $('#alert_msg').show();
+                        $('.alert-success').html(data.msg);
                     }
                 }
             );
         });
+        ////////////////////////////////////////////////////////////show booking form
+        $(document).on('click','#Ap_Booking_button',function (e) {
+            e.preventDefault();
+            $('#alert_msg').hide();
+            var x = document.getElementById("Ap_Booking");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                getDoctorsList();
+            } else {
+                x.style.display = "none";
+            }
 
+        });
         ///////////////////////////////////////////////////////////////////// waiters tab
         $(document).on('click','#wait-tab',function (e) {
             e.preventDefault();
             getwaitingusers();
 
         });
+        /////////////////////////////////////////////////////////////implement booking
+        $(document).on('click','#Booking_btn',function (e) {
+            e.preventDefault();
+            $('#alert_msg').show();
+            $('.alert-success').html("Wait....");
+            var addPenifitFormData=new FormData($('#addPenifitForm')[0]);
+            $.ajax({
+                    type:'post',
+                    enctype:'multipart/form-data',
+                    url:"{{route('booking')}}",
+                    data:addPenifitFormData,
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success: function (data) {
+                        var msg=data.msg +'   '+ data.penifit;
+                        $('#alert_msg').show();
+                        $('.alert-success').html(msg);
 
+                    },error: function (reject) {
+                        alert('Error');
+                        $('#alert_msg').show();
+                        $('.alert-success').html(data.msg);
+                    }
+                }
+            );
+
+        });
         ///////////////////// recieve penifit
         $(document).on('click','.recieve_btn',function (e) {
             e.preventDefault();
 
             var $current_id=$(this).attr('penifit_id');
             var dataid = {};
+            // alert($current_id);
             dataid['current_id'] = $current_id;
             $.ajax({
                     type:'post',
                     enctype:'multipart/form-data',
+
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-                    url:"{{route('csrecieve')}}",
+                    url:"{{route('getSurvey')}}",
                     data:dataid,
 
 
@@ -337,12 +393,39 @@
                         // var returnedData = JSON.parse(data);
                         // $("html").html(response);
                        if(data.redirect){
+
+
+
                            $('.nav-tabs a[href="#finance"]').tab('show');
                            $('#finance').html(data.html).html();
-/////////////////////////////////////////////////////////////////////// append data
+                           /////////////////////////////////////////////////////////////////////// append data
+                           $('[name="c_user_id"]').val(thisdata.id);
+                           var headertext="";
+
+                           if(thisdata.gender=='m')
+                           {
+                               headertext="التقييم الأولي للسيد  "+thisdata.first_name+"  "+thisdata.last_name;
+                               $('#header_id').html(headertext);
+                           }
+                           else if(thisdata.gender=='f'){
+                               headertext="التقييم الأولي للسيدة  "+thisdata.first_name+"  "+thisdata.last_name;
+                               $('#header_id').html(headertext);
+                           }
+                           else{
+                                   headertext="التقييم الأولي للسيد/ة  "+thisdata.first_name+"  "+thisdata.last_name;
+                                   $('#header_id').html(headertext);
+                           }
+                           getDoctorsList();
+
+
+
+/*
+                           $('[name="header"]').val(headertext);
                            $('[name="csfirst_name"]').val(thisdata.first_name);
                            $('[name="csfather_name"]').val(thisdata.father_name);
                            $('[name="cslast_name"]').val(thisdata.last_name);
+
+ */
 
 
 
@@ -381,7 +464,7 @@
                 {{--})--}}
 
                 $.ajax({
-                    url: "{{route('getwaitingusers')}}",
+                    url: "{{route('getspecificwaitinguser')}}",
                     type: 'GET',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -407,13 +490,12 @@
                                 '<td>' + gender + '</td>' +
                                 '<td>' + val.penifit_booked.birth_date + '</td>' +
                                 '<td>' + val.booking_date + '</td>' +
-
                                 '<td>' + val.starts_at + '</td>' +
                                 '<td>' + val.ends_at + '</td>' +
                                 '<td>' + val.doctor.name + '</td>' +
                                 '<td>' + val.user_booked.name + '</td>' +
                                 '<td>' + '<button class="recieve_btn" ' +
-                                'penifit_id='+val.id+'>'+' Recieve </button>' + '</td>' +
+                                'penifit_id='+val.penifit_booked.id+'>'+' Recieve </button>' + '</td>' +
                                 '</tr>';
                             $('#waitingTbody').append(htm);
                         })
@@ -428,6 +510,30 @@
 
         }
 
+        function getDoctorsList() {
+            $(function(){
+                $.ajax({
+                    url: "{{route('getdoctorslist')}}",
+                    type: 'GET',
+                    data: { },
+                    success: function(response)
+                    {
+
+                        $("#trans_select1").empty();
+                        var options = '';
+                        for (var i = 0; i < response.itemlist.length; i++) {
+                            options += '<option value="' + response.itemlist[i].id + '">' + response.itemlist[i].name + '</option>';
+                        }
+                        $("#trans_select1").append(options);
+
+
+                    },error: function (reject) {
+                        alert('Error');
+                    }
+                });
+            });
+
+        }
     </script>
 
 @endsection

@@ -329,12 +329,7 @@
                 }
             );
         });
-        ///////////////////////////////////////////////////////////////////// waiters tab
-        $(document).on('click','#wait-tab',function (e) {
-            e.preventDefault();
-            $('#alert_msg').hide();
-            getwaitingusers();
-        });
+
         ////////////////////////////////////////////////////////////show booking form
         $(document).on('click','#Ap_Booking_button',function (e) {
             e.preventDefault();
@@ -375,6 +370,12 @@
                 }
             );
 
+        });
+        ///////////////////////////////////////////////////////////////////// waiters tab
+        $(document).on('click','#wait-tab',function (e) {
+            e.preventDefault();
+            $('#alert_msg').hide();
+            getwaitingusers();
         });
 
         function getwaitingusers() {

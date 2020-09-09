@@ -87,8 +87,10 @@ Route::resource('/events', 'EventController');
 
 Route::prefix('/casestudy')->group(function () {
     Route::get('/casestudypanel','CaseStudy\CaseStudyController@index')->name('casestudypanel');
-    Route::post('/csrecieveform','CaseStudy\CaseStudyController@csrecieve')->name('csrecieve');
+    Route::post('/csrecieveform','CaseStudy\CaseStudyController@getSurvey')->name('getSurvey');
+    Route::post('/savesurvey','CaseStudy\CaseStudyController@saveSurvey')->name('saveSurvey');
     Route::get('/csform','CaseStudy\CaseStudyController@csform')->name('csform');
+    Route::get('/getspecificwaitinguser','CaseStudy\CaseStudyController@getSpecificWaitingUsers')->name('getspecificwaitinguser');
 
 });
 

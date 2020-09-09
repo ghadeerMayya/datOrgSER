@@ -30,6 +30,10 @@ if(Auth::user()){
     if($currentPriv=='admin'){
         return redirect()->route('adminpanel');
     }
+    ////////////////////////////////////////////////////
+    /// You are logged in!
+    //this account should be verified ..
+    //Call administrator
     else if ($currentPriv=='guest') {
         return view('home');
     }

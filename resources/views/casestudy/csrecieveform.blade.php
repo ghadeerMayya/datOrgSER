@@ -5,6 +5,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+    {{--Initial evaluation Form--}}
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="add" role="tabpanel" aria-labelledby="add-tab">
             <div class="container">
@@ -13,7 +14,7 @@
                         <div class="card">
                             <div class="card-header">التقييم الأولي </div>
 
-                            {{--Initial evaluation Form--}}
+
 
                             <form  method = "post" id="Initial_evaluationForm" enctype="multipart/form-data">
                                 <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
@@ -56,6 +57,10 @@
                                             </select></td>
                                     </tr>
                                     <tr>
+                                        <td>-------------------------</td>
+
+                                    </tr>
+                                    <tr>
                                         <td>عدد أفراد العائلة</td>
                                         <td><input type='text' name='family' id="family" /></td>
                                     </tr>
@@ -67,7 +72,7 @@
                                         <td> العمل الحالي </td>
                                         <td><input type='text' name='c_job' id="c_job" /></td>
                                     </tr>
-
+                                    <tr>
                                     <td> العنوان</td>
                                     <td><input type='text' name='c_adress' id="c_adress" /></td>
                                     </tr>
@@ -77,19 +82,19 @@
                                     </tr>
                                     <tr>
                                         <td> الشكوى الرئيسية</td>
-                                        <td><textarea type='text' name='main_com' id="main_com"/></textarea></td>
+                                        <td><textarea type='text' name='main_com' id="main_com"></textarea>
                                     <tr>
                                     <tr>
                                         <td> القصة الحالية</td>
-                                        <td><textarea type='text' name='c_story' id="c_story" ></textarea></td></textarea></td>
+                                        <td><textarea type='text' name='c_story' id="c_story" ></textarea></td>
                                     </tr>
                                     <tr>
                                         <td> القصة المرضية</td>
-                                        <td><textarea type='text' name='p_story' id="p_story" ></textarea></td></textarea></td>
+                                        <td><textarea type='text' name='p_story' id="p_story" ></textarea></td>
                                     </tr>
                                     <tr>
                                         <td>السوابق</td>
-                                        <td><textarea type='text' name='_an' id="_an" ></textarea></td></textarea></td>
+                                        <td><textarea type='text' name='_an' id="_an" ></textarea></td>
                                     </tr>
 
 
@@ -120,7 +125,9 @@
             </div>
         </div>
     </div>
-    </div>
+    <br>
+    <br>
+    <br>
     {{------------------------------------------------------------------------------------------------------}}
     {{-- ps_ex Form--}}
 
@@ -184,7 +191,9 @@
             </div>
         </div>
     </div>
-    </div>
+    <br>
+    <br>
+    <br>
 
 
     {{--                            -----------------------------------------------------}}
@@ -305,7 +314,6 @@
             </div>
         </div>
     </div>
-    </div>
     <br>
     <br>
     <br>
@@ -351,7 +359,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <br>
     <br>
@@ -418,7 +425,6 @@
             </div>
         </div>
     </div>
-    </div>
     <br>
     <br>
     <br>
@@ -454,7 +460,6 @@
             </div>
         </div>
     </div>
-    </div>
     <br>
     <br>
     <br>
@@ -462,34 +467,8 @@
 
 
     {{--                            -----------------------------------------------------}}
-    <div class="alert alert-success" id="success_msg" style="display: none;">
-        تم الحفظ بنجاح
 
-    </div>
-    <div class="alert alert-failed" id="error_msg" style="display: none;">
-        الرجاء إعادة المحاولة
-    </div>
-    <div class="alert alert-failed" id="exist_msg" style="display: none;">
-        الرقم الوطني موجود فعلا يرحى الضفط على زر البحث
-    </div>
-    <div class="alert alert-failed" id="nopenifit_msg" style="display: none;">
-        الرقم الوطني غير موجود سابقا
-    </div>
-    <div class="alert alert-failed" id="existadded_msg" style="display: none;">
-        موجود سابقا وتمت إضافته إلى قائمة الانتظار
-    </div>
 
-    </div>
-    </div>
-    </div>
-    </div>
-
-    </div>
-    {{-- Waiting form       --}}
-
-    {{-- finance form       --}}
-
-    </div>
     {{-- Under_treatment form       --}}
     <div class="tab-pane fade" id="Under_treatment" role="tabpanel" aria-labelledby="Under_treatment-tab">
 
