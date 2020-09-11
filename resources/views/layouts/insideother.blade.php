@@ -24,7 +24,7 @@
         @yield('content')
     </main>
 </div>
-hujا
+
 
 
 @yield('scripts')
