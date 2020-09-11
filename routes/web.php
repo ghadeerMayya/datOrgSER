@@ -27,12 +27,10 @@ Route::get('/ghtest', function () {
         'user'=> ['id'=> '1',
             'name'=>'reception']
 
-
-
-
     ]);
 
 });
+
 
 Route::get('/post/{id}','Posts@index');
 
@@ -77,7 +75,7 @@ Route::prefix('/reception')->group(function () {
 
     ###### test route ######
 });
-Route::get('/test','Reception\ReceptionController@test')->name('test');
+Route::get('/test','CaseStudy\CaseStudyController@testt')->name('test');
 
 
 Route::resource('/events', 'EventController');

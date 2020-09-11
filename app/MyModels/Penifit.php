@@ -21,6 +21,9 @@ class Penifit extends Model
     public function booked_dates(){
         return $this -> hasMany(Bookuser::class,'customer_id','id');
     }
+    public function I_E_s(){
+        return $this -> hasMany(Initialevaluationform::class,'customer_id','id');
+    }
 
 
 

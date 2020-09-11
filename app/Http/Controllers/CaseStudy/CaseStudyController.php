@@ -261,5 +261,9 @@ class CaseStudyController extends Controller
 
     }
 
+//    public function testt(){
+//        return Initialevaluationform::with('penifit')->get();
+//    }
+
 
 }
