@@ -93,6 +93,10 @@
                                             <input type="submit"  id="Ap_Booking_button" class="btn btn-primary" value="حجز موعد"/>
 
                                         </td>
+                                        <td colspan = '5'>
+                                            <input type="submit"  id="penidit_profile" class="btn btn-primary" value="الصفحة الشخصية للمستفيد"/>
+
+                                        </td>
 
                                     </tr>
 
@@ -317,6 +321,45 @@
                 }
             );
         });
+        ///////////////////////////////////////////////////////////////////////penifit profile
+        $(document).on('click','#penidit_profile',function (e) {
+            e.preventDefault();
+            var addPenifitFormData=new FormData($('#addPenifitForm')[0]);
+            //  var sex_select = $('#sex_select').find(":selected").text();
+            $.ajax({
+                    type:'post',
+                    enctype:'multipart/form-data',
+                    url:"{{route('penifitprofile')}}",
+                    data:addPenifitFormData,
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success: function (data) {
+                        if(data.msg === 'saved and added to log'){
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
+
+                        }
+                        else if(data.msg ==='user already exist'){
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
+                        }
+                        else if(data.msg ==='user already exist added to log list'){
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
+                        }
+                        else{
+                            $('#alert_msg').show();
+                            $('.alert-success').html(data.msg);
+                        }
+                    },error: function (reject) {
+                        alert('Error');
+                        $('#alert_msg').show();
+                        $('.alert-success').html(data.msg);
+                    }
+                }
+            );
+        });
         ////////////////////////////////////////////////////////////show booking form
         $(document).on('click','#Ap_Booking_button',function (e) {
             e.preventDefault();
@@ -324,7 +367,7 @@
             var x = document.getElementById("Ap_Booking");
             if (x.style.display === "none") {
                 x.style.display = "block";
-                getDoctorsList();
+                getDoctorsList1();
             } else {
                 x.style.display = "none";
             }
@@ -494,7 +537,7 @@
                                 '<td>' + val.ends_at + '</td>' +
                                 '<td>' + val.doctor.name + '</td>' +
                                 '<td>' + val.user_booked.name + '</td>' +
-                                '<td>' + '<button class="recieve_btn" ' +
+                                '<td>' + '<button class="btn recieve_btn" ' +
                                 'penifit_id='+val.penifit_booked.id+'>'+' Recieve </button>' + '</td>' +
                                 '</tr>';
                             $('#waitingTbody').append(htm);
@@ -525,6 +568,31 @@
                             options += '<option value="' + response.itemlist[i].id + '">' + response.itemlist[i].name + '</option>';
                         }
                         $("#trans_select1").append(options);
+
+
+                    },error: function (reject) {
+                        alert('Error');
+                    }
+                });
+            });
+
+        }
+
+        function getDoctorsList1() {
+            $(function(){
+                $.ajax({
+                    url: "{{route('getdoctorslist')}}",
+                    type: 'GET',
+                    data: { },
+                    success: function(response)
+                    {
+
+                        $("#trans_select").empty();
+                        var options = '';
+                        for (var i = 0; i < response.itemlist.length; i++) {
+                            options += '<option value="' + response.itemlist[i].id + '">' + response.itemlist[i].name + '</option>';
+                        }
+                        $("#trans_select").append(options);
 
 
                     },error: function (reject) {

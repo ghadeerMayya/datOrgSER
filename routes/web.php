@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 // Route::get()
 
-//Route::get('/test', function () {
-//    return 'welcome';
-//});
+Route::get('/testyt', function () {
+    return view('admin\profile');
+});
 
 Route::get('/testttt/{id}', function ($id) {
     return 'welcome '. $id;
@@ -49,8 +49,9 @@ Route::get('/addPenifits','PenifitController@addPenifits');
 //$penifit->delete();
 //return redirect("viewPenifits");
 //});
-
-
+############ profile routes #####################
+Route::post('/profile','CaseStudy\CaseStudyController@penifit_profile')->name('penifitprofile');
+########### #End public routes ##################
 ############ Admin routes  ######################
 Route::prefix('/admin')->group(function () {
     Route::get('/adminpanel','Admin\AdminController@index')->name('adminpanel');

@@ -8,16 +8,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'DAtOrg') }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&family=Questrial&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
 {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--}}
 {{--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--}}
 <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+
 
     <!-- Styles -->
-    <link href="{{ url('css/bootstrap.css') }}" rel="stylesheet">
+
+    <link href="{{ url('css/basic3.css') }}" rel="stylesheet">
+    <link href="{{ url('css/forms.css') }}" rel="stylesheet">
+    <link href="{{ url('css/admin8.css') }}" rel="stylesheet">
+    <link href="{{ url('css/profile4.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
 <div id="app">
@@ -84,9 +92,10 @@
         @yield('content')
     </main>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+{{--<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>--}}
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 
 
 @yield('scripts')
