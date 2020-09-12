@@ -26,6 +26,40 @@ class CaseStudyController extends Controller
     public function index(){
        return view('casestudy\casestudy');
     }
+
+    public function penifit_profile(Request $request){
+        if ($request){
+            $current_id = $request->input('current_id');
+
+            $currentpenifit=Penifit::where('id','=',$current_id)->get();
+
+//            $returnHTML = view('admin\profile')->with('currentpenifit', $currentpenifit);
+
+
+            return view('admin\profile')->with('currentpenifit', $currentpenifit);
+//            return response() -> json([
+//                'msg'=>'user moved to your log',
+//                "redirect"=>true,
+//                "redirect_url"=>'',
+//                'html'=>$returnHTML,
+//                'penifit'=>$currentpenifit
+//
+//            ]);
+//            session()->keep([$currentpenifit]);
+//            return view('casestudy\csrecieveform');
+
+        }
+        else{
+            return response() -> json([
+                "redirect"=>false,
+                'msg'=>'unknown error try again',
+
+            ]);
+
+        }
+
+    }
+
     public function getSurvey(Request $request){
         if ($request){
             $current_id = $request->input('current_id');
