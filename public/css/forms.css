@@ -1,0 +1,39 @@
+body {
+    background-color:white;
+}
+
+
+
+.font_header{
+    font-family: 'Almarai', sans-serif;
+}
+.container{
+    padding-bottom: 1rem;
+}
+.card-text .label{
+    font-family: 'Almarai', sans-serif;
+    padding-top: 2rem;
+}
+
+.container .card .font_header {
+    text-align: right;
+}
+
+.align{
+    text-align: right;
+}
+
+p{
+    padding-top: 1rem;
+}
+.Background_color{
+    text-align: right;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    opacity: 50%;
+}
+
+table,td {
+    font-family: 'Almarai', sans-serif;
+}

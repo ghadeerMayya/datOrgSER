@@ -1,0 +1,30 @@
+.font{
+    font-family: 'Almarai', sans-serif;
+
+}
+
+.font_size{
+    font-size: 15px;
+}
+.col{
+
+    /*background-color: black;*/
+}
+.card-header{
+
+    /*background-color: black;*/
+}
+.card{
+    width: 100%;
+    /*max-height: 200px;*/
+
+}
+
+hr{
+    background-color: white;
+    opacity: 100%;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    width: 50%;
+
+}
