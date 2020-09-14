@@ -15,6 +15,7 @@
         </li>
     </ul>
 
+
     <div class="tab-content" id="myTabContent">
 
         {{--Add penifit Form--}}
@@ -29,7 +30,7 @@
                                 <table class="table_body">
                                     <tr>
                                         <td>الرقم الوطني</td>
-                                        <td><input type="text" name='card_id'/></td>
+                                        <td><input type="text" id='card_id_id' name='card_id'/></td>
 
                                     </tr>
                                     <tr>
@@ -324,41 +325,12 @@
         ///////////////////////////////////////////////////////////////////////penifit profile
         $(document).on('click','#penidit_profile',function (e) {
             e.preventDefault();
-            var addPenifitFormData=new FormData($('#addPenifitForm')[0]);
+            var card_id = document.getElementById("card_id_id").value;
             //  var sex_select = $('#sex_select').find(":selected").text();
-            $.ajax({
-                    type:'post',
-                    enctype:'multipart/form-data',
-                    url:"{{route('penifitprofile')}}",
-                    data:addPenifitFormData,
-                    processData:false,
-                    contentType:false,
-                    cache:false,
-                    success: function (data) {
-                        if(data.msg === 'saved and added to log'){
-                            $('#alert_msg').show();
-                            $('.alert-success').html(data.msg);
+            var url = "{{route('profile', '')}}"+"/"+card_id;
 
-                        }
-                        else if(data.msg ==='user already exist'){
-                            $('#alert_msg').show();
-                            $('.alert-success').html(data.msg);
-                        }
-                        else if(data.msg ==='user already exist added to log list'){
-                            $('#alert_msg').show();
-                            $('.alert-success').html(data.msg);
-                        }
-                        else{
-                            $('#alert_msg').show();
-                            $('.alert-success').html(data.msg);
-                        }
-                    },error: function (reject) {
-                        alert('Error');
-                        $('#alert_msg').show();
-                        $('.alert-success').html(data.msg);
-                    }
-                }
-            );
+            window.location=url;
+
         });
         ////////////////////////////////////////////////////////////show booking form
         $(document).on('click','#Ap_Booking_button',function (e) {

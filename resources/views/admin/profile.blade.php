@@ -27,7 +27,7 @@
                                 <a class="nav-link active" id="profile_form_tabs_about" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">عن المستفيد</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile_form_tabs_other" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">أخرى</a>
+                                <a class="nav-link" id="profile_form_tabs_other" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">سجل المستفيد</a>
                             </li>
 
                         </ul>
@@ -42,6 +42,7 @@
                 <div class="col-md-4">
                     <div class="profile-work" id="profile_form_info">
                         <p>معلومات التسجيل</p><br/>
+{{--                        <p>{{$card_id ?? ''}}</p>--}}
 
                         <a >تاريخ التسجيل</a><br/><br/>
                         <a >حالة الاحالة</a><br/>
@@ -56,7 +57,7 @@
                                     <label class="label_basic"> معرف المستفيد</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <label id="profile_form_about_id">Default</label>
+                                    <input id="profile_form_about_id" value="{{$card_id ?? ''}}"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -64,7 +65,7 @@
                                     <label class="label_basic">الاسم</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <label id="profile_form_about_name">Default</label>
+                                    <input id="profile_form_about_name" value="Default"/>
                                 </div>
                             </div>
 
@@ -93,44 +94,70 @@
                     </div>
                 </div>
             </div>
+                    </div></div></div></div>
+
+
         </form>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="modal" id="loading" >
+        <p><img src="{{url('/images/loading.gif')}}" alt="Image"/> Please Wait</p>
+    </div>
 
 @endsection
 
 @section('scripts')
+    <script>
+
+        ///////////////////////////////////////////////init ajax
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ajaxStart(function(){
+            $('#loading').show();
+        }).ajaxStop(function(){
+            $('#loading').hide();
+        });
+
+        $(window).on('load', function () {
+
+            $('#loading').show();
+            fillProfileData();
+            $('#loading').hide();
+
+        });
 
 
+        function fillProfileData() {
+            $(function(){
+                // var card_id = document.getElementById("profile_form_about_id").value;
+                var selectedId = $('#profile_form_about_id').val();
+                $.ajax({
+                    url: "{{route('getProfileData')}}",
+                    type: 'post',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    data:
+                { 'card_id' : selectedId },
+                    success: function(data)
+                    {
+                        var thisdata=data.penifit[0];
 
+                        $('#profile_form_about_name').val(thisdata.first_name);
 
+                    },error: function (reject) {
+                        alert('Error');
+                    }
+                });
 
+            });
 
+        }
+
+    </script>
 
 @endsection

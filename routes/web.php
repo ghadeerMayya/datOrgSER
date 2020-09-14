@@ -50,7 +50,10 @@ Route::get('/addPenifits','PenifitController@addPenifits');
 //return redirect("viewPenifits");
 //});
 ############ profile routes #####################
-Route::post('/profile','CaseStudy\CaseStudyController@penifit_profile')->name('penifitprofile');
+Route::prefix('/profile')->group(function () {
+    Route::get('/getprofile/{id}', 'CaseStudy\CaseStudyController@penifit_profile')->name('profile');
+    Route::post('/getprofiledata','CaseStudy\CaseStudyController@getProfileData')->name('getProfileData');
+});
 ########### #End public routes ##################
 ############ Admin routes  ######################
 Route::prefix('/admin')->group(function () {

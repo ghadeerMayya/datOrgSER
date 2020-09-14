@@ -22,21 +22,23 @@ class CaseStudyController extends Controller
 
         #### add CaseStudy middleware
     }
+    public function penifit_profile($card_id){
+        if ($card_id){
 
-    public function index(){
-       return view('casestudy\casestudy');
-    }
 
-    public function penifit_profile(Request $request){
-        if ($request){
-            $current_id = $request->input('current_id');
+            $currentpenifit=Penifit::where('card_id','=',$card_id)->get('id');
+            if($currentpenifit)
+            {
+                return view('admin\profile',compact('card_id'));
+            }
 
-            $currentpenifit=Penifit::where('id','=',$current_id)->get();
 
 //            $returnHTML = view('admin\profile')->with('currentpenifit', $currentpenifit);
 
 
-            return view('admin\profile')->with('currentpenifit', $currentpenifit);
+
+//            return $currentpenifit[0]->first_name;
+
 //            return response() -> json([
 //                'msg'=>'user moved to your log',
 //                "redirect"=>true,
@@ -51,7 +53,7 @@ class CaseStudyController extends Controller
         }
         else{
             return response() -> json([
-                "redirect"=>false,
+                "result"=>false,
                 'msg'=>'unknown error try again',
 
             ]);
@@ -59,6 +61,22 @@ class CaseStudyController extends Controller
         }
 
     }
+
+    public function getProfileData(Request $request){
+        $card_id=$request->input('card_id');
+        $currentpenifit=Penifit::where('card_id','=',$card_id)->get();
+
+        return response() -> json([
+            'penifit'=>$currentpenifit
+            ////////////////////////////////////////////////////////////// change wait to 1 and add to log
+        ]);
+
+    }
+    public function index(){
+       return view('casestudy\casestudy');
+    }
+
+
 
     public function getSurvey(Request $request){
         if ($request){
