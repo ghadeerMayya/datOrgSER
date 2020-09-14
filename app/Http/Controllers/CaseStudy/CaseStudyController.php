@@ -33,23 +33,6 @@ class CaseStudyController extends Controller
             }
 
 
-//            $returnHTML = view('admin\profile')->with('currentpenifit', $currentpenifit);
-
-
-
-//            return $currentpenifit[0]->first_name;
-
-//            return response() -> json([
-//                'msg'=>'user moved to your log',
-//                "redirect"=>true,
-//                "redirect_url"=>'',
-//                'html'=>$returnHTML,
-//                'penifit'=>$currentpenifit
-//
-//            ]);
-//            session()->keep([$currentpenifit]);
-//            return view('casestudy\csrecieveform');
-
         }
         else{
             return response() -> json([
@@ -81,11 +64,8 @@ class CaseStudyController extends Controller
     public function getSurvey(Request $request){
         if ($request){
             $current_id = $request->input('current_id');
-
             $currentpenifit=Penifit::where('id','=',$current_id)->get();
-
             $returnHTML = view('survies\Initial_evaluation')->with('currentpenifit', $currentpenifit)->render();
-
 
             return response() -> json([
                 'msg'=>'user moved to your log',
@@ -93,10 +73,7 @@ class CaseStudyController extends Controller
                 "redirect_url"=>'',
                 'html'=>$returnHTML,
                 'penifit'=>$currentpenifit
-
             ]);
-//            session()->keep([$currentpenifit]);
-//            return view('casestudy\csrecieveform');
 
         }
         else{
@@ -125,62 +102,7 @@ class CaseStudyController extends Controller
     }
 
     public function saveSurvey(Request $request){
-//        $first_name = $request->input('first_name');
-//        $father_name = $request->input('father_name');
-//        $last_name = $request->input('last_name');
-//        $city_name = $request->input('city_name');
-//        $bd = $request->input('birth_date');
-//        $gender=$request->input('gender_select');
-//        $card_id = $request->input('card_id');
-//        $social_status=$request->input('Social_status');
-//
-//
-//        $currentpenifit=Penifit::where('card_id','=',$card_id)->get('id');
-//
-//        if ($currentpenifit->isEmpty()) {
-//
-//            $penifit = new Penifit();
-//            $penifit->first_name = $first_name;
-//            $penifit->father_name = $father_name;
-//            $penifit->last_name = $last_name;
-//            $penifit->city_name = $city_name;
-//            $penifit->birth_date = $bd;
-//            $penifit->gender = $gender;
-//            $penifit->social_status = $social_status;
-//            $penifit->card_id = $card_id;
-//            $penifit->added_by = Auth::user()->id;
-//            $penifit->wait = '1';
-//            $penifit->save();
-//////////////////////////////////////////////////////////////////////////////General task log
-//            $currentid=Penifit::where('card_id','=',$card_id)->get('id');
-//            $tasklog=new Tasklog();
-//            $currentDate=Carbon::now();
-//            $tasklog->created_at=$currentDate;
-//            $tasklog->user_did_task=Auth::user()->id;
-//            $tasklog->penifit_id=$currentid[0]->id;
-//            $tasklog->task="saving user data";
-//            $tasklog->save();
-//            ////////////////////////////////////////////////////////////////////end GTL
-//        }
-//        else{
-//            return response() -> json([
-//                'status'=> true,
-//                'msg'=>'user already exist',
-//            ]);
-//        }
-//
-//        if($penifit){
-//            return response() -> json([
-//                'status'=> true,
-//                'msg'=>'saved to DB',
-//            ]);
-//        }
-//        else{
-//            return response() -> json([
-//                'status'=> false,
-//                'msg'=>' حدث خطأ الرجاء إعادة المحاولة'
-//            ]);
-//        }
+
 
         $initeva=new Initialevaluationform();
         $initeva->user_id=Auth::user()->id;
@@ -273,17 +195,11 @@ class CaseStudyController extends Controller
             $initeva->I_e_I_d_pro=1;
         }
 
-
-
-
-
         $initeva->save();
 
         //if no report image
         if($request -> I_e_report_photo == null)
         {
-
-
 
         }
         else{
@@ -305,17 +221,6 @@ class CaseStudyController extends Controller
 
 
         }
-
-
-
-
-
-
     }
-
-//    public function testt(){
-//        return Initialevaluationform::with('penifit')->get();
-//    }
-
 
 }

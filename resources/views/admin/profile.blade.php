@@ -38,7 +38,7 @@
 {{--                </div>--}}
             </div>
             <div class="container emp-profile">
-            <div class="row">
+              <div class="row">
                 <div class="col-md-4">
                     <div class="profile-work" id="profile_form_info">
                         <p>معلومات التسجيل</p><br/>
@@ -51,6 +51,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content profile-tab" id="myTabContent">
+{{--                        Home tab--}}
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
                                 <div class="col-md-6">
@@ -87,14 +88,38 @@
                             </div>
 
                         </div>
+
+{{--                        Log tab--}}
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
                                 <div class="col-md-6">
-يتم تعبئتها حسب الطلب
+                                    <table class="table table-hover" id="waiting_table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">المستخدم</th>
+                                            <th scope="col">نوع العملية</th>
+                                            <th scope="col">الاستبيان المدخل</th>
+                                            <th scope="col">تاريخ العملية</th>
+                                            <th scope="col">تفاصيل</th>
+                                          </tr>
+                                        </thead>
+
+                                        <tbody id="waitingTbody">
+
+{{--                                         Put your data here--}}
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+              </div>
             </div>
-                    </div></div></div></div>
 
 
         </form>

@@ -43,13 +43,6 @@
                     </div>
 
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6 align" style="float: right">
-                            <label class="font_header ">: المحاكمة والبصيرة </label>
-                            <input type="text" class="form-control" name="I_e_Psy_vision">
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
