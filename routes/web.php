@@ -2,14 +2,20 @@
 
 use App\Penifit;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 // Route::get()
 
+
+###### test route ######
 Route::get('/testyt', function () {
-    return view('admin\profile');
+    return view('admin\profile2');
 });
+/*
+Route::get('/test','CaseStudy\CaseStudyController@testt')->name('test');
+
 
 Route::get('/testttt/{id}', function ($id) {
     return 'welcome '. $id;
@@ -19,7 +25,7 @@ Route::get('/ghtest', function () {
     return response() -> json([
         'doctor'=>
             ['id'=> '1',
-        'name'=>'basheer']
+                'name'=>'basheer']
         ,
         'penifit'=> ['id'=> '1',
             'name'=>'ahmad']
@@ -30,6 +36,9 @@ Route::get('/ghtest', function () {
     ]);
 
 });
+*/
+###### test route ######
+
 
 
 Route::get('/post/{id}','Posts@index');
@@ -42,13 +51,6 @@ Route::get('/viewPenifits','PenifitController@viewpenifit');
 
 Route::get('/addPenifits','PenifitController@addPenifits');
 
-//Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
-//Route::get('/addPenifits/{id}',function ($id){
-//$penifit=Penifit::find($id);
-//$penifit->delete();
-//return redirect("viewPenifits");
-//});
 ############ profile routes #####################
 Route::prefix('/profile')->group(function () {
     Route::get('/getprofile/{id}', 'CaseStudy\CaseStudyController@penifit_profile')->name('profile');
@@ -75,11 +77,8 @@ Route::prefix('/reception')->group(function () {
     Route::get('/booking','Reception\ReceptionController@getDoctorsList')->name('getdoctorslist');
 
 
-    ###### test route ######
-
-    ###### test route ######
 });
-Route::get('/test','CaseStudy\CaseStudyController@testt')->name('test');
+
 
 
 Route::resource('/events', 'EventController');

@@ -19,11 +19,12 @@
 
 
     <!-- Styles -->
-
-    <link href="{{ url('css/basic3.css') }}" rel="stylesheet">
+    <link href="{{ url('css/basic6.css') }}" rel="stylesheet">
     <link href="{{ url('css/forms.css') }}" rel="stylesheet">
     <link href="{{ url('css/admin8.css') }}" rel="stylesheet">
-    <link href="{{ url('css/profile4.css') }}" rel="stylesheet">
+    <link href="{{ url('css/profile9.css') }}" rel="stylesheet">
+    <link href="{{ url('css/case12.css') }}" rel="stylesheet">
+
 
 
 </head>
