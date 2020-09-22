@@ -1,0 +1,121 @@
+body{
+    /*background-color: #aaaaaa;*/
+    /*font-family: 'Open Sans', sans-serif;*/
+font-family: 'Almarai', sans-serif;
+}
+
+input , select{
+    text-align: right;
+}
+
+.input_border{
+    border-radius: 0;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+.right{
+    text-align: right;
+}
+
+.btn-primary{
+    background-color: #00aeef;
+    border: 1px solid #00aeef;
+    border-radius: 0;
+}
+/*.btn-primary:hover {*/
+
+/*    transition: 1s;*/
+/*    width: 30px;*/
+/*}*/
+
+.col-md-6{
+    padding-top: 0.1rem;
+}
+
+.alert{
+    background-color: #636b6f;
+    color: white;
+    border-radius: 0;
+    border: 1px solid #636b6f;
+    width: 100%;
+
+}
+.fade2{
+    transition:opacity .15s linear;
+}
+.card{
+    margin-top: 0.5rem;
+}
+thead{
+    background-color: #00aeef;
+    border: 1px solid #00aeef;
+    color: white;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Almarai', sans-serif;
+    font-weight:lighter;
+    font-size: small;
+    text-align: center;
+}
+td{
+    text-align: center;
+    font-family: 'Almarai', sans-serif;
+
+}
+table:hover{
+    /*background-color: white;*/
+}
+.recieve_btn{
+    border: 1px solid #00aeef;
+    font-family: 'Almarai', sans-serif;
+    font-size: small;
+}
+.recieve_btn:hover {
+background-color: #00aeef;
+    color: white;
+}
+
+
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+
+}
+.profile-head .nav-tabs .nav-link{
+    /*font-weight:600;*/
+    border: none;
+    font-size: 15px;
+    margin-top: 2rem;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+
+}
+.container2{
+    height: 3px;
+    margin-left: 1rem;
+
+}
+
+.search_btn {
+    float: right;
+    float: right;
+    border-left: 1px solid #00aeef
+
+}
+/*.search_btn{*/
+/*    width: 50%;*/
+/*}*/
+/*.search_btn:hover{*/
+/*    width: 50%;*/
+/*}*/
+
+/*-------------------------------------serch*/
