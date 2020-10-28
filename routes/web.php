@@ -55,8 +55,10 @@ Route::get('/addPenifits','PenifitController@addPenifits');
 Route::prefix('/profile')->group(function () {
     Route::get('/getprofile/{id}', 'CaseStudy\CaseStudyController@penifit_profile')->name('profile');
     Route::post('/getprofiledata','CaseStudy\CaseStudyController@getProfileData')->name('getProfileData');
+    ########### get profile log
+    Route::get('/getlog','CaseStudy\CaseStudyController@getLogOfCustomer')->name('getProfileLog');
 });
-########### #End public routes ##################
+########### #End profile routes ##################
 ############ Admin routes  ######################
 Route::prefix('/admin')->group(function () {
     Route::get('/adminpanel','Admin\AdminController@index')->name('adminpanel');
@@ -88,14 +90,33 @@ Route::resource('/events', 'EventController');
 
 Route::prefix('/casestudy')->group(function () {
     Route::get('/casestudypanel','CaseStudy\CaseStudyController@index')->name('casestudypanel');
+    ##############################Survies
     Route::post('/csrecieveform','CaseStudy\CaseStudyController@getSurvey')->name('getSurvey');
-    Route::post('/savesurvey','CaseStudy\CaseStudyController@saveSurvey')->name('saveSurvey');
+    Route::post('/saveInitialSurvey','CaseStudy\CaseStudyController@saveInitialSurvey')->name('saveInitialSurvey');
+    Route::post('/saveSpecialAutSurvey','CaseStudy\CaseStudyController@saveSpecialAutSurvey')->name('saveSpecialAutSurvey');
+    ##############################end Survies
     Route::get('/csform','CaseStudy\CaseStudyController@csform')->name('csform');
     Route::get('/getspecificwaitinguser','CaseStudy\CaseStudyController@getSpecificWaitingUsers')->name('getspecificwaitinguser');
 
 });
 
 ############ End Case Study ############################
+
+############# Finance routes #######################
+
+Route::prefix('/finance')->group(function () {
+    Route::post('/saveFinanceTransfer','CaseStudy\CaseStudyController@saveFinanceTransfer')->name('saveFinanceTransfer');
+    Route::get('/getFinanceLog','CaseStudy\CaseStudyController@getFinanceLog')->name('getFinanceLog');
+    Route::get('/getAllNewFinanceLog','Reception\ReceptionController@getAllNewFinanceLog')->name('getAllNewFinanceLog');
+    Route::get('/financecard/{id}','Reception\ReceptionController@financecard')->name('financecard');
+//    Route::get('/getprofile/{id}', 'CaseStudy\CaseStudyController@penifit_profile')->name('profile');
+    Route::get('/getFinanceData','Reception\ReceptionController@getFinanceData')->name('getFinanceData');
+    Route::get('/paymoney','Reception\ReceptionController@paymoney')->name('paymoney');
+    Route::get('/getfinancelog','Reception\ReceptionController@get_finance_card_log')->name('getfinancelog');
+
+
+});
+############ End Finance routes ###################
 
 ############## Booking ###############################
 Route::get('/booking','Booking\Booking@index')->name('booking1');

@@ -24,6 +24,7 @@
     <link href="{{ url('css/admin8.css') }}" rel="stylesheet">
     <link href="{{ url('css/profile9.css') }}" rel="stylesheet">
     <link href="{{ url('css/case12.css') }}" rel="stylesheet">
+    <link href="{{ url('css/profile_end5.css') }}" rel="stylesheet">
 
 
 
@@ -65,8 +66,12 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item">
-                                    {{ Auth::user()->priv }}
+                                   Open profile
                                 </a>
+{{--                                <a class="dropdown-item">--}}
+{{--                                    {{ Auth::user()->priv }}--}}
+{{--                                </a>--}}
+
                                 <a class="dropdown-item" href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

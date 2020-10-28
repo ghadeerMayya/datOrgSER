@@ -227,8 +227,6 @@
                                             <td>الطيف الفصامي SchS</td>
                                             <td>
                                                 <label class="switch">
-{{--                                                    <input type="checkbox" class="I_e_I_d[SchS]">--}}
-{{--                                                   --}}
                                                     <input type="checkbox" name="I_e_I_d_schs" value="SchS" />
                                                 </label>
                                             </td>
@@ -451,10 +449,8 @@
                                 الاحالات
                             </div>
                             <div class="card-body">
-                                <select class="selectpicker" id="trans_select1" name="doctor_selectedin_I_E" style="...">
-                                    <option value="AP_A">doctor1</option>
-                                    <option value="AP_B">doctor2</option>
-                                    <option value="AP_C">doctor3</option>
+                                <select class="selectpicker" id="trans_select_initial_eval" name="doctor_selectedin_I_E" style="...">
+
                                 </select>
                             </div>
                         </div>
@@ -531,7 +527,6 @@
                     $('#loading').hide();
                 });
 
-
                 ///////////////////////////////checkbox if checked
                 // $(document).ready(function(){
                 //     $('input[type="checkbox"]').click(function(){
@@ -551,7 +546,7 @@
                     $.ajax({
                             type:'post',
                             enctype:'multipart/form-data',
-                            url:"{{route('saveSurvey')}}",
+                            url:"{{route('saveInitialSurvey')}}",
                             data:addPenifitFormData,
                             // data:$('.I_e_I_d:checked').serialize(),
                             processData:false,

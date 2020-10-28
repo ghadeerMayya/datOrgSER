@@ -2,13 +2,15 @@
 
 namespace App\MyModels;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Logofpenifit extends Model
 {
 //    protected $table="logwaitingpenifits";
     protected $fillable = [
-     'entering_time','exit_time','notes','penifit_id'
+     'customer_id',
+          'created_at', 'updated_at'
     ];
 
     /**
@@ -17,14 +19,16 @@ class Logofpenifit extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'updated_at'
 
     ];
     public $timestamps = true;
 
 
-//    public function penifit(){
-//        return $this ->belongsTo('App\MyModels\Penifit','penifit_id','id');
-//    }
-    //
+    public function penifit(){
+        return $this-> belongsTo(Penifit::class,'customer_id','id');
+    }
+    public function user(){
+        return $this-> belongsTo(User::class,'user_id','id');
+    }
+
 }

@@ -377,7 +377,13 @@ else {
     sex='غير ذلك';
 }
 
-                            var htm = '<tr><td>' + val.id + '</td><td>' + val.first_name + '</td><td>' + val.last_name + '</td><td>' + sex + '</td><td>' + val.birth_date + '</td><td>' + formattedDate + '</td></tr>';
+                            var htm = '<tr><td>' + val.id + '</td>' +
+                                '<td>' + val.first_name + '</td>' +
+                                '<td>' + val.last_name + '</td>' +
+                                '<td>' + sex + '</td>' +
+                                '<td>' + val.birth_date + '</td>' +
+                                '<td>' + formattedDate + '</td>' +
+                                '</tr>';
                             $('#waitingTbody').append(htm);
                         })
 

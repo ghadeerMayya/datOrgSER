@@ -3,6 +3,7 @@
 namespace App;
 
 use App\MyModels\Bookuser;
+use App\MyModels\Financetask;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -20,6 +21,10 @@ class User extends Authenticatable
     ///////////////////////////////////////// dates this user booked it
     public function user_booked(){
         return $this -> hasMany(Bookuser::class,'bookable_id','id');
+    }
+    ///////////////////
+    public function finance_task(){
+        return $this -> hasMany(Financetask::class,'user_id','id');
     }
     ///////////////////
 

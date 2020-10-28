@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Reception;
 
 use App\Http\Controllers\Controller;
 use App\MyModels\Bookuser;
+use App\MyModels\Financetask;
 use App\MyModels\Logofpenifit;
 use App\MyModels\Penifit;
 use App\MyModels\Tasklog;
@@ -353,6 +354,144 @@ class ReceptionController extends Controller
 //
 //
         return $penifit = Penifit::with('logofpenifits')->find('34');
+
+
+
+    }
+
+    public function getAllNewFinanceLog(){
+        $arrs['data'] = Financetask::with('user:id,name','penifit:id,first_name,last_name')
+            ->where('new', 1)
+            ->get();
+
+        return $arrs;
+    }
+
+    public function financecard($finance_card_id){
+
+
+        if ($finance_card_id) {
+
+                return view('admin\financecard', compact('finance_card_id'));
+
+        } else {
+            return response()->json([
+                "result" => false,
+                'msg' => 'unknown error try again',
+
+            ]);
+
+        }
+
+    }
+
+    public function getFinanceData(Request $request)
+    {
+        $finance_card_id = $request->input('finance_card_id');
+        $finance_card = Financetask::with('user:id,name','penifit:id,first_name,father_name,last_name')
+        ->where('id', '=', $finance_card_id)
+            ->get();
+
+        return response()->json([
+            'finance_card' => $finance_card
+            ////////////////////////////////////////////////////////////// change wait to 1 and add to log
+        ]);
+
+    }
+
+    public function paymoney(Request $request)
+    {
+        $finance_card_id = $request->input('finance_card_id');
+        $amount_just_paid = $request->input('amount_just_paid');
+
+        $finance_card_note = $request->input('finance_card_note');
+
+        if ($amount_just_paid){
+
+
+            $finance_card= Financetask::find($finance_card_id);
+
+            $amount_paid=$finance_card->amount_paid;
+            $remaining_amount=$finance_card->remaining_amount;
+            $customer_id=$finance_card->customer_id;
+
+            ///////////////////////////////////////////get finance card by id to do tasks
+
+
+            $new_paid_amount= $amount_paid+$amount_just_paid;
+            $new_remaining_amount=$remaining_amount-$amount_just_paid;
+
+
+            $finance_card = Financetask::where('id', '=', $finance_card_id)
+                ->update(['amount_paid' =>$new_paid_amount,
+                'remaining_amount'=>$new_remaining_amount,
+                        'new'=>'0']
+                );
+
+            ////////////////////////////////////////////// is fully paid?
+            ///
+            $finance_card=new Financetask();
+            $finance_card=$finance_card::find($finance_card_id);
+            if($finance_card->remaining_amount=='0'){
+                $finance_card = Financetask::where('id', '=', $finance_card_id)
+                    ->update(['fully_paid'=>'1']
+                    );
+            }
+
+            /////////////////////////////////////////////////check if amount paid over than accepted
+
+            /////////////////////////////////////////////// add to log
+            $logofpenifit=new Logofpenifit();
+            $logofpenifit->user_id = Auth::user()->id;
+            $logofpenifit->customer_id = $customer_id;
+            $logofpenifit->process_type = 'finance';
+            $logofpenifit->process_name = 'استلام دفعة';
+            $logofpenifit->finance_amount = $amount_just_paid;
+            $logofpenifit->process_id = $finance_card_id;
+
+            if($finance_card_note){
+                $logofpenifit->process_notes = $finance_card_note;
+                $logofpenifit->save();
+
+            }
+            else{
+                $logofpenifit->save();
+
+            }
+
+
+        }
+
+
+
+
+
+        return response()->json([
+            'finance_card' => $finance_card
+            ////////////////////////////////////////////////////////////// change wait to 1 and add to log
+        ]);
+
+    }
+
+    public function get_finance_card_log(Request $request)
+    {
+        $finance_card_id = $request->input('finance_card_id');
+
+
+        if ($finance_card_id){
+
+
+
+            $arrs['data'] = Logofpenifit::with('user:id,name')
+                ->where('process_id', '=', $finance_card_id)
+                ->where('finance_amount','!=',null)
+                ->get();
+
+            return $arrs;
+
+
+
+        }
 
 
 

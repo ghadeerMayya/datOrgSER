@@ -168,7 +168,6 @@
                     <th scope="col">تاريخ الحجز</th>
                     <th scope="col">من الساعة</th>
                     <th scope="col">إلى الساعة</th>
-                    <th scope="col">محول إلى</th>
                     <th scope="col">محول من</th>
                     <th scope="col">الإجراء</th>
                 </tr>
@@ -220,7 +219,7 @@
         }).ajaxStop(function(){
             $('#loading').hide();
         });
-        ///////////////////////////////////////////////////////////save data
+        ////////////////////////////////////////////////////////////////////////save data
         $(document).on('click','#savedata',function (e) {
             e.preventDefault();
             var addPenifitFormData=new FormData($('#addPenifitForm')[0]);
@@ -259,7 +258,7 @@
                 }
             );
         });
-        /////////////////////////////////////////////////////////////////////// Remove fields
+        ////////////////////////////////////////////////////////////////////////Remove fields
         $(document).on('click','#removeprev',function (e) {
             e.preventDefault();
 
@@ -275,7 +274,7 @@
             $('#alert_msg').hide();
 
         });
-        ////////////////////////////////////////////////////////////////////// search id
+        ////////////////////////////////////////////////////////////////////////search id
         $(document).on('click','#searchid',function (e) {
             e.preventDefault();
             // Add search and fill fields
@@ -332,7 +331,7 @@
             window.location=url;
 
         });
-        ////////////////////////////////////////////////////////////show booking form
+        //////////////////////////////////////////////////////////////////////show booking form
         $(document).on('click','#Ap_Booking_button',function (e) {
             e.preventDefault();
             $('#alert_msg').hide();
@@ -345,13 +344,13 @@
             }
 
         });
-        ///////////////////////////////////////////////////////////////////// waiters tab
+        //////////////////////////////////////////////////////////////////////waiters tab
         $(document).on('click','#wait-tab',function (e) {
             e.preventDefault();
             getwaitingusers();
 
         });
-        /////////////////////////////////////////////////////////////implement booking
+        //////////////////////////////////////////////////////////////////////implement booking
         $(document).on('click','#Booking_btn',function (e) {
             e.preventDefault();
             $('#alert_msg').show();
@@ -379,85 +378,20 @@
             );
 
         });
-        ///////////////////// recieve penifit
+        //////////////////////////////////////////////////////////////////////recieve penifit
         $(document).on('click','.recieve_btn',function (e) {
             e.preventDefault();
 
-            var $current_id=$(this).attr('penifit_id');
-            var dataid = {};
+            var card_id=$(this).attr('c_card_id');
+
+            var url = "{{route('profile', '')}}"+"/"+card_id;
+
+            window.location=url;
+            ///////////////////////////////////////////////////////////////////////////
             // alert($current_id);
-            dataid['current_id'] = $current_id;
-            $.ajax({
-                    type:'post',
-                    enctype:'multipart/form-data',
-
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                    url:"{{route('getSurvey')}}",
-                    data:dataid,
-
-
-                // processData:false,
-                //     contentType:false,
-                    cache:false,
-
-
-                    success: function (data) {
-                        var thisdata=data.penifit[0];
-                        // var returnedData = JSON.parse(data);
-                        // $("html").html(response);
-                       if(data.redirect){
 
 
 
-                           $('.nav-tabs a[href="#finance"]').tab('show');
-                           $('#finance').html(data.html).html();
-                           /////////////////////////////////////////////////////////////////////// append data
-                           $('[name="c_user_id"]').val(thisdata.id);
-                           var headertext="";
-
-                           if(thisdata.gender=='m')
-                           {
-                               headertext="التقييم الأولي للسيد  "+thisdata.first_name+"  "+thisdata.last_name;
-                               $('#header_id').html(headertext);
-                           }
-                           else if(thisdata.gender=='f'){
-                               headertext="التقييم الأولي للسيدة  "+thisdata.first_name+"  "+thisdata.last_name;
-                               $('#header_id').html(headertext);
-                           }
-                           else{
-                                   headertext="التقييم الأولي للسيد/ة  "+thisdata.first_name+"  "+thisdata.last_name;
-                                   $('#header_id').html(headertext);
-                           }
-                           getDoctorsList();
-
-
-
-/*
-                           $('[name="header"]').val(headertext);
-                           $('[name="csfirst_name"]').val(thisdata.first_name);
-                           $('[name="csfather_name"]').val(thisdata.father_name);
-                           $('[name="cslast_name"]').val(thisdata.last_name);
-
- */
-
-
-
-
-
-                       }
-
-                    },
-                error: function (reject) {
-                        alert('Error');
-                        $('#error_msg').show();
-                        $('#exist_msg').hide();
-                        $('#success_msg').hide();
-                        $('#nopenifit_msg').hide();
-                    }
-                }
-            );
 
 
         });
@@ -507,10 +441,9 @@
                                 '<td>' + val.booking_date + '</td>' +
                                 '<td>' + val.starts_at + '</td>' +
                                 '<td>' + val.ends_at + '</td>' +
-                                '<td>' + val.doctor.name + '</td>' +
                                 '<td>' + val.user_booked.name + '</td>' +
                                 '<td>' + '<button class="btn recieve_btn" ' +
-                                'penifit_id='+val.penifit_booked.id+'>'+' Recieve </button>' + '</td>' +
+                                'c_card_id='+val.penifit_booked.card_id+'>'+' Open profile </button>' + '</td>' +
                                 '</tr>';
                             $('#waitingTbody').append(htm);
                         })

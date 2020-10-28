@@ -9,7 +9,7 @@
             <a class="nav-link" id="wait-tab" data-toggle="tab" href="#waiting" role="tab" aria-controls="waiting" aria-selected="false">قائمة المواعيد</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="finance-tab" data-toggle="tab" href="#finance" role="tab" aria-controls="finance" aria-selected="false">تحويلات مالية</a>
+            <a class="nav-link" id="finance_tab" data-toggle="tab" href="#finance" role="tab" aria-controls="finance" aria-selected="false">تحويلات مالية</a>
         </li>
     </ul>
 
@@ -185,29 +185,24 @@
         {{-- finance form       --}}
         <div class="tab-pane fade" id="finance" role="tabpanel" aria-labelledby="finance-tab">
 
-            <table class="table table-hover">
-                <thead>
+            <table class="table table-hover table_pro " id="finance_Records_table" >
+                <thead class="thead_pro">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">الاسم الأول</th>
-                    <th scope="col">الاسم الأخير</th>
-                    <th scope="col">التكلفة المطلوبة</th>
+                    <th scope="col">اسم المستفيد</th>
+                    <th scope="col">محول من</th>
+                    <th scope="col">المبلغ الأساسي</th>
+                    <th scope="col">نسبة الحسم %</th>
+                    <th scope="col">المبلغ المستحق</th>
+                    <th scope="col">تاريخ الاستحقاق</th>
+                    <th scope="col">تفاصيل</th>
                 </tr>
                 </thead>
-                <tbody>
 
-                {{--                foreach loop to get data from penifits table--}}
-                {{--@foreach($waiters as $waiter)--}}
-                {{--                <tr>--}}
-                {{--                    <th scope="row">{{$waiter_>id}}</th>--}}
-                {{--                    <td>{{$waiter_>id}}</td>--}}
-                {{--                    <td>{{$waiter_>id}}</td>--}}
-                {{--                    <td>{{$waiter_>id}}</td>--}}
-                {{--                </tr>--}}
-                {{--@endforeach--}}
+                <tbody id="financeLogBody">
 
                 </tbody>
             </table>
+
         </div>
 
       </div>
@@ -378,6 +373,29 @@
             getwaitingusers();
         });
 
+        ////////////////////////////////////////// finance tab
+        $(document).on('click','#finance_tab',function (e) {
+            e.preventDefault();
+            // $('#alert_msg').hide();
+            getAllNewFinanceLog();
+        });
+
+
+        ///////////////////////////////////////////// open finance card
+        $(document).on('click','.open_finance_card_btn',function (e) {
+            e.preventDefault();
+
+            var finance_card_id=$(this).attr('finance_card_id');
+
+            alert(finance_card_id);
+
+            var url = "{{route('financecard', '')}}"+"/"+finance_card_id;
+
+            window.location=url;
+            ///////////////////////////////////////////////////////////////////////////
+
+        });
+
         function getwaitingusers() {
             $(function(){
                 $('#waitingTbody').empty();
@@ -388,29 +406,6 @@
                     success: function(response)
                     {
                         $.map(response.data, function(val, i) {
-                            // var timstamp= new Date(val.created_at);
-                            // timstamp.toLocaleString(undefined, {
-                            //     day: 'numeric',
-                            //     month: 'numeric',
-                            //     year: 'numeric',
-                            //     hour: '2-digit',
-                            //     minute: '2-digit',
-                            // })
-                            // var date = timstamp.getDate();
-                            // var month = timstamp.getMonth();
-                            // var year = timstamp.getFullYear();
-                            // var hour=timstamp.getHours();
-                            // var minutes=timstamp.getMinutes();
-                            // var formattedDate  = date+ "/" + (month+1)  + "/" + year+ "  -- at :  " + hour+ ":" + minutes;
-                            // // var userTimezoneOffset = timstamp.getTimezoneOffset() * 60000;
-                            // var modifiedTstamp=new Date(timstamp.getTime() - userTimezoneOffset);
-                            // timstamp.toLocaleString(undefined, {
-                            //     day: 'numeric',
-                            //     month: 'numeric',
-                            //     year: 'numeric',
-                            //     hour: '2-digit',
-                            //     minute: '2-digit',
-                            // })
                             var gender='غير ذلك';
                             if (val.penifit_booked.gender=='m'){
                                 gender='ذكر';
@@ -468,6 +463,52 @@
             });
 
         }
+
+        function getAllNewFinanceLog() {
+            $(function(){
+                $('#financeLogBody').empty();
+
+
+                $.ajax({
+                    url: "{{route('getAllNewFinanceLog')}}",
+                    type: 'GET',
+                    data: { },
+                    success: function(response)
+                    {
+                        $.map(response.data, function(val, i) {
+
+                            var date=Date.parse(val.created_at);
+                            var d=new Date(date);
+                            var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " -//- " +
+                                d.getHours() + ":" + d.getMinutes();
+                            var penifitfullname=val.penifit.first_name+' '+val.penifit.last_name;
+
+
+
+
+                            var htm = '<tr>' +
+                                '<td>' + penifitfullname + '</td>' +
+                                '<td>' + val.user.name + '</td>' +
+                                '<td>' + val.amount_to_be_paid + '</td>' +
+
+                                '<td>' + val.discount_average + '</td>' +
+                                '<td>' + val.remaining_amount + '</td>' +
+
+                                '<td>' + datestring + '</td>' +
+                                '<td>' + '<button class="btn open_finance_card_btn" ' +
+                                'finance_card_id='+val.id+'>'+' Open card </button>' + '</td>' +
+                                '</tr>';
+                            $('#financeLogBody').append(htm);
+                        })
+                        // $('#waitingTbody').html(response);
+                    },error: function (reject) {
+                        alert('Error');
+                    }
+                });
+            });
+
+        }
+
     </script>
 
 @endsection
