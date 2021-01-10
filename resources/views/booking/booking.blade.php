@@ -1,50 +1,47 @@
 @extends('layouts.app')
 
+
 @section('content')
+    <!doctype html>
+<html lang="en">
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
 
-    <div class="container theme-showcase">
-        <h1>Calendar</h1>
-        <div id="holder" class="row" ></div>
-    </div>
 
+    <style>
+        /* ... */
+    </style>
+</head>
+<body>
+<div id="calendar">
 
-    <div class="container">
-        <hr>
-        <p>Resources</p>
-        <ul>
-            <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a></li>
-            <li><a href="https://bootstrap-calendar.azurewebsites.net/index-bs3.html">another calendar</a></li>
-            <li><a href="http://www.bootply.com/rzNQTlDlFX">another calendar</a></li>
-            <li><a href="http://slipsum.com">lipsum generator</a></li>
-        </ul>
-    </div>
-    <div class="container">
-        <hr>
-        <p>Notes</p>
-        <ul>
-            <li>clicking on year to open and let you jump around 5ish years, don't care for current ui...</li>
-            <li>work needed on day mode (buggy, unfinished)</li>
-            <li>options missing still for classes</li>
-            <li>not sure about popover contents</li>
-            <li>? use of success state color and info state color ?</li>
-            <li><a href="http://www.reddit.com/r/css/comments/2gvw4n/i_refactored_my_less_to_follow_fats_guidelines/">can do better with css rules</a></li>
-        </ul>
-    </div>
-
-    <div class="modal" id="loading" >
-        <p><img src="{{url('/images/loading.gif')}}" alt="Image"/> Please Wait</p>
-    </div>
+</div>
+</body>
+</html>
 
 @endsection
 
 @section('scripts')
+<script>
+    $(window).on('load', function () {
 
 
 
-    <script>
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
 
-
-
-    </script>
+        });
+    });
+</script>
 
 @endsection

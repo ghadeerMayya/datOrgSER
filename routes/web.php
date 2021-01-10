@@ -11,7 +11,7 @@ Route::get('/', 'HomeController@index');
 
 ###### test route ######
 Route::get('/testyt', function () {
-    return view('admin\profile2');
+    return view('booking\booking');
 });
 /*
 Route::get('/test','CaseStudy\CaseStudyController@testt')->name('test');
@@ -59,6 +59,15 @@ Route::prefix('/profile')->group(function () {
     Route::get('/getlog','CaseStudy\CaseStudyController@getLogOfCustomer')->name('getProfileLog');
 });
 ########### #End profile routes ##################
+
+############user profile routes #####################
+Route::prefix('/userprofile')->group(function () {
+    Route::get('/getuserprofile/{id}', 'CaseStudy\CaseStudyController@user_profile')->name('userprofile');
+    Route::post('/getuserprofiledata','CaseStudy\CaseStudyController@getuserProfileData')->name('getuserProfileData');
+//    ########### get userprofile log
+    Route::get('/getuserprofilelog','CaseStudy\CaseStudyController@getLogOfuserprofile')->name('getuserProfileLog');
+});
+########### #End user profile routes ##################
 ############ Admin routes  ######################
 Route::prefix('/admin')->group(function () {
     Route::get('/adminpanel','Admin\AdminController@index')->name('adminpanel');
@@ -120,6 +129,8 @@ Route::prefix('/finance')->group(function () {
 
 ############## Booking ###############################
 Route::get('/booking','Booking\Booking@index')->name('booking1');
+Route::post('/saveagenda','CaseStudy\CaseStudyController@saveAgenda')->name('saveagenda');
+Route::post('/getagenda','CaseStudy\CaseStudyController@getSpecificUserAgenda')->name('getagenda');
 
 
 ################End Booking #########################

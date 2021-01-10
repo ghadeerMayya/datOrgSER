@@ -12,7 +12,7 @@
 
 </style>
 
-    <div class="container-fluid" >
+    <div class="container-fluid" style="padding-top: 5rem">
 
         <form method="get" id="profile_form">
 
@@ -64,16 +64,18 @@
 
 {{--                        ----------------------المعلومات الأساسية------------------------}}
 
-                        <div class="tab-pane fade show active"  id="info" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="tab-pane fade show active"  id="info" role="tabpanel" aria-labelledby="v-pills-home-tab" style="background-color: white;">
 
                           <form>
+                                  <div class="input-group mb-3" style="padding-top: 1rem;background-color: white">
+
 
                             <div class="col-md"style="background:white;">
-                            <ul class="list-group" style="float: right">
-                                <li class="list-group-item disabled" aria-disabled="true"><div class="row">
-
+                            <ul class="list-group" style="float: right;padding: 2rem">
+                                <li class="list-group-item right">
+                                    <div class="row">
                                         <div class="col">
-                                            <p class="label_basic right_center" > معرف المستفيد</p>
+                                            <p class="form-control"  style="border: none" > معرف المستفيد</p>
                                         </div>
 
                                         <div class="col">
@@ -84,9 +86,10 @@
                                     </div>
                                 </li>
 
-                                <li class="list-group-item"><div class="row">
+                                <li class="list-group-item right">
+                                    <div class="row">
                                         <div class="col">
-                                            <p class="label_basic right_center">الاسم الأول</p>
+                                            <p class="form-control"  style="border: none;" >الاسم الأول</p>
                                         </div>
                                         <div class="col">
                                             <input id="profile_form_info_firstName" style="border: none" class="form-control" value=""/>
@@ -95,10 +98,10 @@
                                     </div>
                                 </li>
 
-                                <li class="list-group-item">
+                                <li class="list-group-item right">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="label_basic right_center">اسم الأب</p>
+                                            <p class="form-control"  style="border: none" >اسم الأب</p>
                                         </div>
                                         <div class="col">
                                             <input id="profile_form_info_father"  style="border: none" class="form-control" value=""/>
@@ -106,10 +109,10 @@
                                     </div>
                                 </li>
 
-                                <li class="list-group-item">
+                                <li class="list-group-item right">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="label_basic right_center">الاسم الأخير</p>
+                                            <p class="form-control"  style="border: none" >الاسم الأخير</p>
                                         </div>
 
                                         <div class="col">
@@ -119,10 +122,10 @@
                                     </div>
                                 </li>
 
-                                <li class="list-group-item">
+                                <li class="list-group-item right">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="label_basic right_center">الحالة الاجتماعية</p>
+                                            <p class="form-control"  style="border: none" >الحالة الاجتماعية</p>
                                         </div>
 
                                         <div class="col">
@@ -131,10 +134,10 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item right">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="label_basic right_center">مكان الولادة</p>
+                                            <p class="form-control"  style="border: none" >مكان الولادة</p>
                                         </div>
 
                                         <div class="col">
@@ -143,10 +146,10 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item right">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="label_basic right_center">تاريخ الميلاد</p>
+                                            <p class="form-control"  style="border: none" >تاريخ الميلاد</p>
                                         </div>
 
                                         <div class="col">
@@ -155,6 +158,8 @@
                                         </div>
                                     </div>
                                 </li>
+
+
 
                                 {{--                            <li class="list-group-item"></li>--}}
                             </ul>
@@ -165,6 +170,7 @@
 </form>
 
                         </div>
+                    </div>
 
 {{-----------------------------------------------------نهايو المعلومات الأساسية-----------------------------------------------}}
 
@@ -173,7 +179,7 @@
                         {{----------------------------------------------------- سجل المستفيد-----------------------------------------------}}
 
                         <div class="tab-pane fade" id="Records" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-
+                            <div class="col-md"style="background:white;padding: 2rem">
                             <table class="table table-hover table_pro " id="profile_form_Records_table" >
                                 <thead class="thead_pro">
                                 <tr>
@@ -192,7 +198,7 @@
 
                                 </tbody>
                             </table>
-
+                            </div>
                         </div>
 
 {{---------------------------------نهاية سجل المستفيد------------------------------------------------------}}
@@ -202,6 +208,7 @@
 {{-- -----------------------------------العميات------------------------------------                       --}}
 
                         <div class="tab-pane fade" id="Operations" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <div class="col-md"style="background:white;padding: 2rem">
 
                             <div class="col-md" style="width: 50%">
                             <div class="input-group mb-3" style="padding-top: 1rem">
@@ -225,7 +232,7 @@
                             </div>
 
                             <div class="form-group right">
-                                <button class="btn btn btn-primary shadow"id="profile_form_getSurvey_btn" style="width: 105px;" type="button">فتح الاستبياني</button>
+                                <button class="btn btn btn-primary shadow"id="profile_form_getSurvey_btn" style="width: 150px;" type="button">فتح الاستبياني</button>
                             </div>
 
                             </div>
@@ -239,7 +246,7 @@
                             </div>
 
                         </div>
-
+                        </div>
 {{--------------------------------------نهاية العمليات-------------------------------}}
 
 
@@ -247,55 +254,71 @@
 
 
                         <div class="tab-pane fade"  id="mony_Transfers" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <div class="col-md"style="background:white;padding: 2rem;direction: rtl">
 
-                            <div class="col-md">
-                            <ul class="list-group"style="float: right;text-align: right">
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="label_basic right_center" > المبلغ المطلوب </p>
-                                        </div>
-                                        <div class="col">
-                                            <input type="number"  style="border: none"id="profile_form_mony_Transfers_paid" class="form-control" />
 
-                                        </div>
+{{--                                new--}}
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" id="profile_form_mony_Transfers_paid" placeholder="المبلغ المطلوب" aria-label="First name">
                                     </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="label_basic right_center" > نسبة الحسم % </p>
-                                        </div>
-                                        <div class="col">
-                                            <input type="number" style="border: none" id="profile_form_mony_discount_average" class="form-control" />
-
-                                        </div>
-
+                                    <div class="col">
+                                        <input type="text" class="form-control" id="profile_form_mony_discount_average" placeholder="نسبة الحسم %" aria-label="Last name">
                                     </div>
-                                </li>
+                                </div>
 
-                                <br>
+{{--            endNew                    --}}
+{{--                            <ul class="list-group"style="float: right;text-align: right">--}}
+{{--                                <li class="list-group-item">--}}
+{{--                                    <div class="row">--}}
+{{--                                            <p class="label_basic right_center" > المبلغ المطلوب </p>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col">--}}
+{{--                                            <input type="number"  style="border: none"id="profile_form_mony_Transfers_paid" class="form-control" />--}}
 
+
+
+{{--                                </li>--}}
+{{--                                <li class="list-group-item">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col">--}}
+{{--                                            <p class="label_basic right_center" > نسبة الحسم % </p>--}}
+
+{{--                                        <div class="col">--}}
+{{--                                            <input type="number" style="border: none" id="profile_form_mony_discount_average" class="form-control" />--}}
+
+{{--                                        </div>--}}
+
+
+{{--                                </li>--}}
+
+{{--                                <br>--}}
+
+{{--                                <div class="form-group right">--}}
+{{--                                    <button class="btn btn-primary  shadow" style="width: 105px;" type="button" id="profile_form_mony_Transfers_btn">تحويل لاستلام مبلغ</button>--}}
+
+
+
+
+{{--                            </ul>--}}
+                            <br>
                                 <div class="form-group right">
-                                    <button class="btn btn-primary  shadow" style="width: 105px;" type="button" id="profile_form_mony_Transfers_btn">تحويل لاستلام مبلغ</button>
+                          <button class="btn btn-primary  shadow" style="width: 200px;" type="button" id="profile_form_mony_Transfers_btn">تحويل لاستلام مبلغ</button>
 
 
                                 </div>
 
 
-                            </ul>
-                            </div>
-
-
 
                         </div>
-
+                        </div>
 {{--                        ---------------------------------------نهاية التحويلات المالية--------------------------------------}}
 
 
 {{--                        -----------------مستحقات مالية -----------------------------------------}}
 
                         <div class="tab-pane fade"  id="finance_amounts" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <div class="col-md"style="background:white;padding: 2rem">
 
                             <table class="table table-hover table_pro " id="finance_Records_table" >
                                 <thead class="thead_pro">
@@ -319,7 +342,6 @@
                         </div>
 
 
-
  {{--                        -----------------نهاية  مستحقات مالية -----------------------------------------}}
 
                     </div>
@@ -329,10 +351,15 @@
         </div>
         </form>
     </div>
-<div class="modal" id="loading" >
-    <p><img src="{{url('/images/loading.gif')}}" alt="Image"/> Please Wait</p>
-</div>
+{{--<div class="modal" id="loading" >--}}
+{{--    <p><img src="{{url('/images/loading2.gif')}}" alt="Image"/> Please Wait</p>--}}
+{{--</div>--}}
 
+
+<div class="modal" id="loading" style="z-index: 1">
+    <p><img src="{{url('/images/loading2.gif')}}" alt="Image"/> </p>
+
+</div>
 @endsection
 
 @section('scripts')

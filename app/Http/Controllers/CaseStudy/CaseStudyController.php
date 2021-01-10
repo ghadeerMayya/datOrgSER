@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CaseStudy;
 
 use App\Http\Controllers\Controller;
+use App\MyModels\Agenda;
 use App\MyModels\Bookuser;
 use App\MyModels\Financetask;
 use App\MyModels\Initialevaluationform;
@@ -11,6 +12,7 @@ use App\MyModels\Penifit;
 use App\MyModels\Specialautform;
 use App\MyModels\Tasklog;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
@@ -127,6 +129,30 @@ class CaseStudyController extends Controller
 
         $arrs['data'] = Logofpenifit::with( 'user:id,name')
             ->where('customer_id', $request->input('current_id'))
+            ->get();
+
+        return $arrs;
+    }
+    public function getSpecificUserAgenda(Request $request)
+    {
+
+        $arrs['data'] = Agenda::with( 'user:id,name')
+            ->with('penifit:id,first_name,last_name')
+            ->where('user_id', $request->input('user_id'))
+            ->get();
+
+        $arrs['user_booked']= Bookuser::with('penifitBooked','userBooked')
+            ->where('doctor_id', $request->input('user_id'))
+            ->get();
+
+        return $arrs;
+    }
+
+    public function getLogOfuserprofile(Request $request)
+    {
+
+        $arrs['data'] = Logofpenifit::with( 'user:id,name','penifit:id,first_name')
+            ->where('user_id', $request->input('current_id'))
             ->get();
 
         return $arrs;
@@ -406,6 +432,28 @@ class CaseStudyController extends Controller
 ///
     }
 
+    public function saveAgenda(Request $request)
+    {
+
+/// save survey to its table
+///
+///
+        $saveAgenda = new Agenda();
+        $saveAgenda->user_id = Auth::user()->id;
+        $saveAgenda->title = $request->input('title');
+        $saveAgenda->date = $request->input('date');
+        $saveAgenda->start_at = $request->input('starts_at');
+        $saveAgenda->end_at = $request->input('ends_at');
+
+        $saveAgenda->save();
+
+
+        /////////////////////////////////////////////// save to log
+
+///
+///
+    }
+
     public function getFinanceLog(Request $request)
     {
         $arrs['data'] = Financetask::with('user:id,name')
@@ -415,6 +463,39 @@ class CaseStudyController extends Controller
             ->get();
 
         return $arrs;
+    }
+
+
+    public function user_profile($user_id)
+    {
+        if ($user_id) {
+
+
+                return view('admin\userprofile', compact('user_id'));
+
+
+
+        } else {
+            return response()->json([
+                "result" => false,
+                'msg' => 'unknown error try again',
+
+            ]);
+
+        }
+
+    }
+
+    public function getuserProfileData(Request $request)
+    {
+        $user_id = $request->input('user_id');
+        $currentuser = User::where('id', '=', $user_id)->get();
+
+        return response()->json([
+            'user' => $currentuser
+            ////////////////////////////////////////////////////////////// change wait to 1 and add to log
+        ]);
+
     }
 
 

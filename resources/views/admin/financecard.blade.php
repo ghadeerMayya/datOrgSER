@@ -12,7 +12,7 @@
 
 </style>
 
-    <div class="container-fluid" >
+    <div class="container-fluid" style="padding-top: 5rem" >
 
         <form method="get" id="profile_form">
 
@@ -24,13 +24,18 @@
 
 
                     <div class="profile-userpic" style="text-align: center;padding-top: 1rem;">
-                        <input type="text"  style="border-bottom: 1px solid #F1F3FA;text-align: center"  class="form-control" value="بطاقة مالية للسيد/ة" />
 
-                        <input type="text"  style="border-bottom: 1px solid #F1F3FA;text-align: center" id="profile_form_full_name" class="form-control" value="يكتب هنا المعرف الكامل" />
-                        <br><br>
-                        <input type="text"  style="border-bottom: 1px solid #F1F3FA;text-align: center"  class="form-control" value="رقم البيان المالي" />
+                        <p class="label_basic right_center">بطاقة مالية للسيد/ة  </p>
+                        <p   class="label_basic right_center" disabled="" value="بطاقة مالية للسيد/ة" />
 
-                        <input type="text"  style="border-bottom: 1px solid #F1F3FA;text-align: center" id="finance_card_id" class="form-control" value="{{$finance_card_id ?? ''}}" />
+                        <input type="text"  style="border:none;text-align: center;background-color:#117a8b;color: white" disabled id="profile_form_full_name" class="form-control" value="يكتب هنا المعرف الكامل" />
+                        <br>
+                        <br>
+
+                        <p class="label_basic right_center">رقم البيان المالي </p>
+
+
+                        <input type="text"   style="border:none;text-align: center;background-color:#117a8b;color: white" disabled id="finance_card_id" class="form-control" value="{{$finance_card_id ?? ''}}" />
 
                         <input type="hidden"  id="hidden_customer_id"  />
 
@@ -71,111 +76,116 @@
 
                           <form>
 
-                            <div class="col-md"style="background:white;">
-                             <ul class="list-group" style="float: right">
+                              <div class="input-group mb-3" style="padding-top: 1rem;background-color: white">
 
 
-                                <li class="list-group-item"><div class="row">
-                                        <div class="col">
-                                            <p class="label_basic right_center">محول من</p>
-                                        </div>
-                                        <div class="col">
-                                            <input id="finance_card_trns_from" style="border: none" class="form-control" value=""/>
+                                  <div class="col-md"style="background:white;">
+                                      <ul class="list-group" style="float: right;padding: 2rem">
+                                          <li class="list-group-item right">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <p class="form-control"  style="border: none" > محول من</p>
+                                                  </div>
+                                                  <div class="col">
+                                                      <input id="finance_card_trns_from"  disabled style="border: none" class="form-control" value=""/>
+                                                  </div>
 
-                                        </div>
-                                    </div>
-                                </li>
+                                              </div>
+                                          </li>
 
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="label_basic right_center">المبلغ الأساسي</p>
-                                        </div>
-                                        <div class="col">
-                                            <input id="finance_card_basic_amount"  style="border: none" class="form-control" value=""/>
-                                        </div>
-                                    </div>
-                                </li>
-                                 <li class="list-group-item">
-                                     <div class="row">
-                                         <div class="col">
-                                             <p class="label_basic right_center">نسبة الحسم %</p>
-                                         </div>
+                                          <li class="list-group-item right">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <p class="form-control"  style="border: none" >المبلغ الأساسي</p>
+                                                  </div>
+                                                  <div class="col">
+                                                      <input id="finance_card_basic_amount" disabled style="border: none" class="form-control" value=""/>
+                                                  </div>
 
-                                         <div class="col">
-                                             <input id="finance_card_average_value"  style="border: none" class="form-control" value=""/>
+                                              </div>
+                                          </li>
 
-                                         </div>
-                                     </div>
-                                 </li>
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="label_basic right_center">المبلغ المتبقي</p>
-                                        </div>
+                                          <li class="list-group-item right">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <p class="form-control"  style="border: none" >نسبة الحسم % </p>
+                                                  </div>
+                                                  <div class="col">
+                                                      <input id="finance_card_average_value" disabled  style="border: none" class="form-control" value=""/>
+                                                  </div>
 
-                                        <div class="col">
-                                            <input id="finance_card_remaining_amount"  style="border: none" class="form-control" value=""/>
+                                              </div>
+                                          </li>
 
-                                        </div>
-                                    </div>
-                                </li>
+                                          <li class="list-group-item right">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <p class="form-control"  style="border: none" >المبلغ المتبقي </p>
+                                                  </div>
+                                                  <div class="col">
+                                                      <input id="finance_card_remaining_amount" disabled style="border: none" class="form-control" value=""/>
+                                                  </div>
+
+                                              </div>
+                                          </li>
 
 
 
-                                <li class="list-group-item">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="label_basic right_center">تاريخ الاستحقاق</p>
-                                        </div>
 
-                                        <div class="col">
-                                            <input id="finance_card_date"  style="border: none" class="form-control" value=""/>
+                                          <li class="list-group-item right">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <p class="form-control"  style="border: none" >تاريخ الاستحقاق </p>
+                                                  </div>
+                                                  <div class="col">
+                                                      <input id="finance_card_date" disabled style="border: none" class="form-control" value=""/>
+                                                  </div>
 
-                                        </div>
-                                    </div>
-                                </li>
+                                              </div>
+                                          </li>
+
+
+
+
 {{--///////////////////////////////////////////////////////////////////////////////////////--}}
-                                 <li class="list-group-item">
-                                     <div class="row">
-                                         <div class="col">
-                                             <p class="label_basic right_center">إضافة ملاحظة</p>
-                                         </div>
 
-                                         <div class="col">
-                                             <input id="finance_card_note"  style="border: none" class="form-control" value=""/>
+
+                                          <li class="list-group-item right">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <p class="form-control"  style="border: none" >إضافة ملاحظة </p>
+                                                  </div>
+                                                  <div class="col">
+                                                      <input id="finance_card_note"   class="form-control" value=""/>
+                                                  </div>
+
+                                              </div>
+                                          </li>
+
+                                          <li class="list-group-item right">
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <p class="form-control"  style="border: none" >المبلغ المراد دفعه</p>
+                                                  </div>
+                                                  <div class="col">
+                                                      <input id="finance_card_amount_just_paid"  class="form-control" value=""/>
+                                                  </div>
+
+                                              </div>
+                                          </li>
+
+
+                               <br>
+                                             <button class="btn btn-primary  shadow" style="width: 150px;" type="button" id="finance_card_pay_btn">تسديد دفعة</button>
+
 
                                          </div>
                                      </div>
-                                 </li>
-                                 <li class="list-group-item">
-                                     <div class="row">
 
 
-                                         <div class="col">
-                                             <p class="label_basic right_center">المبلغ المراد دفعه</p>
-                                         </div>
-                                         <div class="col">
-                                             <input id="finance_card_amount_just_paid"  style="border: none" class="form-control" value=""/>
-
-                                         </div>
-
-                                     </div>
-                                 </li>
-                                 <li class="list-group-item">
-                                     <div class="row">
-                                         <div class="col">
-                                             <button class="btn btn-primary  shadow" style="width: 105px;" type="button" id="finance_card_pay_btn">تسديد دفعة</button>
-
-
-                                         </div>
-                                     </div>
-                                 </li>
-                                {{--                            <li class="list-group-item"></li>--}}
                             </ul>
 
 
-                                {{--                            <li class="list-group-item"></li>--}}
 
 
                             </div>
@@ -184,7 +194,7 @@
 
 </form>
 
-                        </div>
+
 
 {{-----------------------------------------------------نهايو المعلومات الأساسية-----------------------------------------------}}
 
@@ -194,8 +204,9 @@
 
                         <div class="tab-pane fade" id="Records" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
-                            <table class="table table-hover table_pro " id="profile_form_Records_table" >
-                                <thead class="thead_pro">
+                                <div class="col-md"style="background:white;padding: 2rem">
+                                    <table class="table table-hover table_pro " id="profile_form_Records_table" >
+                                        <thead class="thead_pro">
                                 <tr>
                                     <th scope="col">id</th>
                                     <th scope="col">تاريخ العملية</th>
